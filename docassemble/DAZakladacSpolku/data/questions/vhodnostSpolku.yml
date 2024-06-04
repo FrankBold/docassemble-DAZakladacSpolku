@@ -1,0 +1,44 @@
+include:
+  - setup.yml
+---
+mandatory: True
+code: |
+  q_1
+  q_2
+  q_3
+  q_4
+  vystup
+---
+question: |
+  Chcete se věnovat kolektivní aktivitě?
+subquestions: |
+  Základem spolku jsou jeho členové. Musí být aspoň tři.
+yesno: q_1
+---
+question: |
+  Chcete podnikat a rozdělovat případný zisk?
+subquestions: |
+  Spolek může v omezené míře podnikat, ale veškeré příjmy musí být použity na činnost spolku. Nemůžete případný přebytek rozdělit mezi členy.
+yesno: q_2
+---
+question: |
+  Plánujete hospodařit s majetkem, či se ucházet o granty/dotace?
+subquestions: |
+  Pokud ne, možná nepotřebujete zakládat právnickou osobu. Činnost můžete zpravidla vyvíjet i zcela neformálně. Se správou spolku není příliš mnoho formalit, ale zvažte jestli to pro vás není zbytečné.
+yesno: q_3
+---
+question: |
+  Neexistuje už spolek ve vašem okolí, který se věnuje tomu samému?
+subquestions: |
+  Může být praktické spojit síly s ostatními nadšenci.
+yesno: q_4
+---
+event: vystup
+question: |
+  Vyhodnocení
+subquestion: |  
+  Snažili jsme se vám nadhodit otázky, které stojí za zvážení, než se do zakládání spolku pustíte.
+
+  Pokud vám založení spolku stále dává smysl můžeme se posunout k tomu, jak jej založit.
+
+  Pokud si nejste jisti, zkuste to ještě zvážit.
