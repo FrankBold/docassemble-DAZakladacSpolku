@@ -1,0 +1,76 @@
+Osoba = {
+    "typ": "FO|PO",
+    "jmeno": "string",
+    "prijmeni": "string",
+    "název": "string",
+    "adresa": Adresa,
+    "datumNarozeni": "string",
+    "ičo": "string",
+}
+
+Adresa = {
+    "ulice": "string",
+    "cp": "string",
+    "mesto": "string",
+    "psc": "string"
+}
+
+{
+    "Spolek": {
+      "name": "",
+      "sidlo": {
+        "typ": "",
+        "adresa": Adresa,
+        "vlastnici": {
+            "pocet": "integer",
+            "osoby": [Osoba]
+        }
+      },
+      "ucel": [
+        "string"
+      ],
+      "cinnosti": {
+        "hlavni": [
+          "string"
+        ],
+        "vedlejsi": [
+          "string"
+        ]
+      },
+      "popis": "string",
+      "podnikani": "boolean",
+      "clenskaSchuze": {
+        "cetnost": "string",
+        "pravomoci": [
+          "string"
+        ],
+        "naDalku": "boolean"
+      },
+      "statutar": {
+        "typ": "string",
+        "pocet": "integer",
+        "obdobi": "string",
+        "jednani": "string",
+        "osoby": [Osoba]
+      },
+      "clenove": {
+        "prispevky": "boolean",
+        "cestneClenstvi": "string"
+      },
+      "zpusobZalozeni": "string",
+      "ustavujicicSchuze": {
+        "zapisujiciOsoba": Osoba,
+        "svolavatel": Osoba,
+        "ověřovatel": Osoba,
+        "přítomní": [Osoba],
+        "program": ["string"],
+        "datumSvolani": "string",
+        "datumKonani": "string"
+      },
+      "dokumentySamostatne": "boolean",
+      "kontrolniKomise": "boolean",
+      "rozhodciKomise": "boolean",
+      "rada": "boolean"
+    }
+  }
+  
