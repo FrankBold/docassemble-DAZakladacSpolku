@@ -1,0 +1,36 @@
+include:
+  - setup.yml
+---
+features:
+  - navigation: True
+---
+mandatory: True
+code: |
+  uvod
+  Spolek.cinnost
+---
+sections: 
+  - Spolek: spolek
+  - Orgány spolku: organy
+  - Členství: clenstvi
+  - Proces založení: zalozeni
+---
+questions: |
+  Charakteristika spolku
+subquestion: |
+  Než začnete vytvářet stanovy a další zakládající dokumenty, je dobré si s ostatními zakladateli ujasnit v jaké podobě má být spolek založen a jak má fungovat.
+
+  V této části vás provedeme jednotlivými věcmi, které si potřebujete vyjasnit předtím, než začnete psát stanovy.
+continue button field: uvod
+---
+section: spolek
+question: |
+  Základní informace o spolku
+subquestion: |
+  V této části si určíte základní informace o spolku. Čemu se bude věnovat a nutné věci.
+fields: 
+  - Jaké činnost bude spolek vykonávat?: Spolek.cinnost
+    input type: area
+  - K jakému účelu spolek zakládáte?: Spolek.ucel
+    input type: area
+  - Bude spolek vykonávat i výdělečnou činnost?: Spolek.podnikani
