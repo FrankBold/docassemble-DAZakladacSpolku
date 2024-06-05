@@ -78,8 +78,8 @@ fields:
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,organy)")
 ---
 sets:
-  - Spolek.druhyClenstvi
-  - Spolek.prispevky
+  - Spolek.clenstvi.cestne
+  - Spolek.clenstvi.prispevky
   - Spolek.rozhodovaniClenskeSchuze
 section: clenstvi
 question: |
@@ -99,8 +99,7 @@ fields:
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,zalozeni)")
 ---
 code: |
-  import requests
-  sendData = requests.post('https://hook.eu1.make.com/qajj4d9qshooixotv4ywkhf6isdqvf5j', data=json.dumps(all_variables()),headers={'Content-Type': 'application/json'})
+  sendData = save_spolek_data(json.dumps(all_variables()))
 ---
 event: vystup
 question: |
