@@ -13,6 +13,8 @@ code: |
   Spolek.cinnost
   Spolek.sidlo
   Spolek.statutar
+  Spolek.druhyClenstvi
+  Spolek.zalozeni
 ---
 sections: 
   - spolek: Spolek
