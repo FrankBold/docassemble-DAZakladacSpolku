@@ -71,3 +71,24 @@ question: |
 fields:
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,organy)")
+---
+sets:
+  - Spolek.druhyClenstvi
+  - Spolek.prispevky
+  - Spolek.rozhodovaciClenskeSchuze
+section: clenstvi
+question: |
+  Otázky spojené s členstvím ve spolku
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,clenstvi)")
+---
+sets: 
+  - Spolek.zalozeni
+  - Spolek.elektronicky
+section: zalozeni
+question: |
+  Je také dobré se připravit na samotný proces založení
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,zalozeni)")
