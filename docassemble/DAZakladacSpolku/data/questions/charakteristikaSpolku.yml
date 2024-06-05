@@ -67,6 +67,7 @@ sets:
   - Spolek.statutar
   - Spolek.organy
   - Spolek.volebniObdobi
+  - Spolek.volebniObdobiRoky
 section: organy
 question: |
   Vymezení základních orgánů spolku
