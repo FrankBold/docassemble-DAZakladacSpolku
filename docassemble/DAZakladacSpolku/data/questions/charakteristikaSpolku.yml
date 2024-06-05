@@ -2,28 +2,46 @@ include:
   - setup.yml
 ---
 features:
-  - navigation: True
+  navigation: True
+---
+modules:
+  - .nocodb
 ---
 mandatory: True
 code: |
   uvod
   Spolek.cinnost
+  Spolek.sidlo
+---
+sets: otazkyList
+code: |
+  otazkyList = list_noco_db(table_id="m69xije3ls6jr82", fields="label,field,datatype,input type,help,section", filter: str= "(interview,eq,charakteristikaSpolku)")
 ---
 sections: 
-  - Spolek: spolek
-  - Orgány spolku: organy
-  - Členství: clenstvi
-  - Proces založení: zalozeni
+  - spolek: Spolek
+    subsections:
+    - cinnost: Činnosti
+    - fungovani: Fungování spolku
+  - organy: Orgány spolku
+  - clenstvi: Členství
+  - zalozeni: Proces založení
 ---
-questions: |
+question: |
   Charakteristika spolku
 subquestion: |
   Než začnete vytvářet stanovy a další zakládající dokumenty, je dobré si s ostatními zakladateli ujasnit v jaké podobě má být spolek založen a jak má fungovat.
 
   V této části vás provedeme jednotlivými věcmi, které si potřebujete vyjasnit předtím, než začnete psát stanovy.
+
+  Tento dotazník si také můžete stáhnout v PDF podobě jako podklad, který můžete projít s ostatními zakladateli vašeho budoucího spolku.
 continue button field: uvod
+action buttons:
+  - label: Stáhnout PDF
+    action: downloadPDF
+    color: danger
+    icon: forward
 ---
-section: spolek
+section: cinnost
 question: |
   Základní informace o spolku
 subquestion: |
@@ -34,3 +52,14 @@ fields:
   - K jakému účelu spolek zakládáte?: Spolek.ucel
     input type: area
   - Bude spolek vykonávat i výdělečnou činnost?: Spolek.podnikani
+    datatype: yesnoradio
+---
+sets:
+  - Spolek.sidlo
+  - Spolek.cizinci
+section: fungovani
+question: |
+  Informace k fungování spolku
+fields:
+  - code: |
+      list_nocodb_record(table_id="m69xije3ls6jr82", fields="label,field,datatype,input type,help", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,fungovani)")
