@@ -59,3 +59,14 @@ question: |
 fields:
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,fungovani)")
+---
+sets:
+  - Spolek.statutar
+  - Spolek.organy
+  - Spolek.volebniObdobi
+section: organy
+question: |
+  Vymezení základních orgánů spolku
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,organy)")
