@@ -75,7 +75,7 @@ fields:
 sets:
   - Spolek.druhyClenstvi
   - Spolek.prispevky
-  - Spolek.rozhodovaciClenskeSchuze
+  - Spolek.rozhodovaniClenskeSchuze
 section: clenstvi
 question: |
   Otázky spojené s členstvím ve spolku
