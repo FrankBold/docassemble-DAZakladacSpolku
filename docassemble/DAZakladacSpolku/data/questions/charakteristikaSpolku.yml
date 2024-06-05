@@ -43,12 +43,8 @@ question: |
 subquestion: |
   V této části si určíte základní informace o spolku. Čemu se bude věnovat a nutné věci.
 fields: 
-  - Jaké činnost bude spolek vykonávat?: Spolek.cinnost
-    input type: area
-  - K jakému účelu spolek zakládáte?: Spolek.ucel
-    input type: area
-  - Bude spolek vykonávat i výdělečnou činnost?: Spolek.podnikani
-    datatype: yesnoradio
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,cinnost)")
 ---
 sets:
   - Spolek.sidlo
