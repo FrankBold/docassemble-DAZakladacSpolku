@@ -37,6 +37,10 @@ action buttons:
     color: danger
     icon: forward
 ---
+sets:
+  - Spolek.cinnost
+  - Spolek.ucel
+  - Spolek.podnikani
 section: cinnost
 question: |
   Základní informace o spolku
