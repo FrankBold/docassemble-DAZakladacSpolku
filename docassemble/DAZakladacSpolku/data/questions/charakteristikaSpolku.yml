@@ -5,17 +5,13 @@ features:
   navigation: True
 ---
 modules:
-  - .nocodb
+  - .interviewTools
 ---
 mandatory: True
 code: |
   uvod
   Spolek.cinnost
   Spolek.sidlo
----
-sets: otazkyList
-code: |
-  otazkyList = list_noco_db(table_id="m69xije3ls6jr82", fields="label,field,datatype,input type,help,section", filter: str= "(interview,eq,charakteristikaSpolku)")
 ---
 sections: 
   - spolek: Spolek
@@ -62,4 +58,4 @@ question: |
   Informace k fungování spolku
 fields:
   - code: |
-      list_nocodb_record(table_id="m69xije3ls6jr82", fields="label,field,datatype,input type,help", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,fungovani)")
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,fungovani)")
