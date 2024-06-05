@@ -15,6 +15,8 @@ code: |
   Spolek.statutar
   Spolek.druhyClenstvi
   Spolek.zalozeni
+  sendData
+  vystup
 ---
 sections: 
   - spolek: Spolek
@@ -95,3 +97,10 @@ question: |
 fields:
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,zalozeni)")
+---
+code: |
+  sendData = requests.post('https://hook.eu1.make.com/qajj4d9qshooixotv4ywkhf6isdqvf5j', data=json.dumps(all_variables()),headers={'Content-Type': 'application/json'})
+---
+event: vystup
+question: |
+  Hotovo, data odeslána
