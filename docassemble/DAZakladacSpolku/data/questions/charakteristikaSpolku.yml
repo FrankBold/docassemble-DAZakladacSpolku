@@ -99,10 +99,7 @@ fields:
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,zalozeni)")
 ---
 code: |
-  variables = json.dumps(all_variables())
----
-code: |
-  sendData = save_spolek_data(variables)
+  sendData = save_spolek_data(all_variables())
 ---
 event: vystup
 question: |
