@@ -13,7 +13,7 @@ code: |
   Spolek.cinnost
   Spolek.sidlo
   Spolek.statutar
-  Spolek.druhyClenstvi
+  Spolek.clenstvi.cestne
   Spolek.zalozeni
   sendData
   vystup
@@ -99,7 +99,10 @@ fields:
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,zalozeni)")
 ---
 code: |
-  sendData = save_spolek_data(json.dumps(all_variables()))
+  variables = json.dumps(all_variables())
+---
+code: |
+  sendData = save_spolek_data(variables)
 ---
 event: vystup
 question: |

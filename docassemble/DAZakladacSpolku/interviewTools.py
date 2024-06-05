@@ -12,7 +12,7 @@ def get_questions_from_nocodb(table_id: str, filter: str= ""):
     return updated_data
 
 def save_spolek_data(data):
-    output = flatten_json(data[0]["Spolek"])
+    output = flatten_json(data["Spolek"])
 
     requests.post('https://hook.eu1.make.com/qajj4d9qshooixotv4ywkhf6isdqvf5j', data=output,headers={'Content-Type': 'application/json'})
 
