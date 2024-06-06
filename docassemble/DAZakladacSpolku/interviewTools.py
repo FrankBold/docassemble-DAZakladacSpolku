@@ -19,7 +19,7 @@ def save_spolek_data(data: dict):
 
     results = update_record(table_id="mkejxthrd05vdcc", data=flatten_json(data["Spolek"]), row_id=data["Spolek"]["row_id"])
 
-    return results, flatten_json(data["Spolek"])
+    return results, flatten_json(data["Spolek"]), data
 
 def load_spolek_data(id):
 
