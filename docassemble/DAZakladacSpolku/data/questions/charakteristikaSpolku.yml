@@ -25,6 +25,7 @@ sections:
   - organy: Orgány spolku
   - clenstvi: Členství
   - zalozeni: Proces založení
+progressive: False
 ---
 question: |
   Charakteristika spolku
@@ -50,8 +51,6 @@ question: |
   Základní informace o spolku
 subquestion: |
   V této části si určíte základní informace o spolku. Čemu se bude věnovat a nutné věci.
-
-  ${save_result}
 fields: 
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,cinnost)")
@@ -103,12 +102,6 @@ fields:
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,zalozeni)")
 continue button field: zalozeni
----
-initial: True
-code: |
-  if Spolek:
-    Spolek.row_id = 3
-    save_result = save_spolek_data(all_variables())
 ---
 event: vystup
 question: |

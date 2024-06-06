@@ -12,3 +12,12 @@ features:
 objects:
   - Spolek: DAObject
   - Spolek.clenstvi: DAObject
+---
+mandatory: True
+code: |
+  Spolek.row_id = 3
+  save_spolek_data(all_variables(make_copy=True))
+---
+initial: True
+code: |
+  save_spolek_data(all_variables(make_copy=True))
