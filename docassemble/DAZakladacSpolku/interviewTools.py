@@ -27,9 +27,7 @@ def save_spolek_data(data: dict):
 
 def call_with_error_check(url):
     try:
-        response = requests.post(
-            url=url
-        )
+        response = requests.get(url=url)
         response.raise_for_status()  # Raise an exception for bad status codes (4xx, 5xx)
         return response
     except requests.exceptions.RequestException as error:
