@@ -1,6 +1,7 @@
 metadata:
   tags:
     - Zakladač spolků
+---
 include:
   - objectSpolek.yml
 ---

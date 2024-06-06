@@ -14,8 +14,8 @@ code: |
     for key, value in spolek_raw.items():
       define(f"Spolek.{key}", value)
 
-    json_response(stanovy.pdf.number)
-    
+    json_response(stanovy.docx.number)
+
   else:
     json_response("Error")
 ---
