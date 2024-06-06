@@ -42,7 +42,7 @@ fields:
 continue button field: stanovy
 ---
 code: |
-  url_stanovy = 
+  url_stanovy = get_document_url(row_id=Spolek.row_id, document="stanovy")
 ---
 event: vystup
 question: |

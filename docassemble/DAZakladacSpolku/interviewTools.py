@@ -29,7 +29,7 @@ def get_document_url(row_id: int, document: str):
 
     match document:
         case "stanovy":
-            return requests.get(url=f"https://da-test.frankbold.org/interview?i=docassemble.playground1ZakladacSpolku:gen_stanovy.yml&reset=1&spolek_id={row_id}")
+            return requests.get(url=f"https://da-test.frankbold.org/interview?i=docassemble.playground1ZakladacSpolku:gen_stanovy.yml&reset=1&spolek_id={row_id}").json()
 
 def load_spolek_data(id: int):
 
