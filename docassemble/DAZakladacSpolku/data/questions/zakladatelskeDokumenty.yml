@@ -42,15 +42,15 @@ fields:
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,stanovy)")
   - html: |
-    <div id="unikatni" class="alert alert-success d-none" role="alert">
-      Nezalezli jsme žádnou významnou shodu. Název tak je pravděpodobně k dispozici.<br><br>
-      Doporučujeme však ujistit se i <a href="https://or.justice.cz/ias/ui/rejstrik">přímo v rejstříku</a>.
-    </div>
-    <div id="duplicita" class="alert alert-warning d-none" role="alert">
-      Nalezli jsme spolky s podobným názvem. Zhodnoťte, zda názvy nejsou zaměnitelné, připadně vyberte jiný název spolku.<br><br>
-      <a href="${ url_of('help') }"><i class="fas fa-question-circle"></i> Jak poznat jedinečnost názvu?</a>
-    </div>
-    <span id="resultsArea"></span>
+      <div id="unikatni" class="alert alert-success d-none" role="alert">
+        Nezalezli jsme žádnou významnou shodu. Název tak je pravděpodobně k dispozici.<br><br>
+        Doporučujeme však ujistit se i <a href="https://or.justice.cz/ias/ui/rejstrik">přímo v rejstříku</a>.
+      </div>
+      <div id="duplicita" class="alert alert-warning d-none" role="alert">
+        Nalezli jsme spolky s podobným názvem. Zhodnoťte, zda názvy nejsou zaměnitelné, připadně vyberte jiný název spolku.<br><br>
+        <a href="${ url_of('help') }"><i class="fas fa-question-circle"></i> Jak poznat jedinečnost názvu?</a>
+      </div>
+      <span id="resultsArea"></span>
 continue button field: stanovy
 script: |
   <script type="application/javascript" charset="utf-8">
