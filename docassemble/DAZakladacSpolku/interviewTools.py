@@ -25,11 +25,22 @@ def save_spolek_data(data: dict):
 
     return results
 
+def call_with_error_check(url):
+    try:
+        response = requests.post(
+            url=url
+        )
+        response.raise_for_status()  # Raise an exception for bad status codes (4xx, 5xx)
+        return response
+    except requests.exceptions.RequestException as error:
+        return error  # Return the exception object itself
+
 def get_document_url(row_id: int, document: str):
 
     match document:
         case "stanovy":
-            return requests.get(url=f"https://da-test.frankbold.org/interview?i=docassemble.playground1ZakladacSpolku:gen_stanovy.yml&reset=1&spolek_id={row_id}").json()
+            return call_with_error_check(f"https://da-test.frankbold.org/interview?i=docassemble.playground1ZakladacSpolku:gen_stanovy.yml&reset=1&spolek_id={row_id}")
+        
 
 def load_spolek_data(id: int):
 
