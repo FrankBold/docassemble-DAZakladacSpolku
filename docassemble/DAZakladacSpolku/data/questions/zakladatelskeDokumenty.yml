@@ -35,7 +35,8 @@ subquestion: |
 continue button field: uvod
 ---
 sets:
-  - Spolek.nazev
+  - Spolek.name
+  - Spolek.address
 section: stanovy
 question: |
   Informace pro sestavení stanov spolku
