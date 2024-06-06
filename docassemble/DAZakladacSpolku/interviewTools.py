@@ -26,7 +26,7 @@ def load_spolek_data(id):
     data = list_nocodb_record(table_id="mkejxthrd05vdcc", fields="dataSpolek", filter=f"(Id,eq,{id})")
 
     if len(data) == 1:
-        return data["dataSpolek"]
+        return data[0]["dataSpolek"]
     else:
         return False
 
