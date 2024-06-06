@@ -14,14 +14,26 @@ def get_questions_from_nocodb(table_id: str, filter: str= ""):
     return updated_data
 
 def save_spolek_data(data: dict):
-    # TODO:
-    # - Nedělat přes Make, ale volat přímo NocoDB. Zde by mělo jít vždy o aktualizaci existujícího záznamu v NocoDB. Záznam vytváříme ve chvíli, kdy si koupili spolek a pak se jen upravuje.
-
     results = update_record(table_id="mkejxthrd05vdcc", data=flatten_json(data["Spolek"]), row_id=data["Spolek"]["row_id"])
 
-    return results, flatten_json(data["Spolek"]), data
+    return results
 
-def load_spolek_data(id):
+def save_document(row_id: int, file_type: str, url_for: str, size: int, mimetype: str = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"):
+
+    data = {
+        "Stanovy": [{
+            "mimetype": mimetype,
+            "size": size,
+            "title": file_type,
+            "url": url_for
+        }]
+    }
+
+    results = update_record(table_id="mkejxthrd05vdcc", data=data, row_id=row_id)
+
+    return results
+
+def load_spolek_data(id: int):
 
     data = list_nocodb_record(table_id="mkejxthrd05vdcc", fields="dataSpolek", filter=f"(Id,eq,{id})")
 
