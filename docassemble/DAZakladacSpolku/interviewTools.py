@@ -16,12 +16,10 @@ def get_questions_from_nocodb(table_id: str, filter: str= ""):
 def save_spolek_data(data: dict):
     # TODO:
     # - Nedělat přes Make, ale volat přímo NocoDB. Zde by mělo jít vždy o aktualizaci existujícího záznamu v NocoDB. Záznam vytváříme ve chvíli, kdy si koupili spolek a pak se jen upravuje.
-    output = {}
-    output["Spolek"] = flatten_json(data["Spolek"])
 
     results = update_record(table_id="mkejxthrd05vdcc", data=flatten_json(data["Spolek"]), row_id=data["Spolek"]["row_id"])
 
-    return results
+    return results, flatten_json(data["Spolek"])
 
 def load_spolek_data(id):
 
