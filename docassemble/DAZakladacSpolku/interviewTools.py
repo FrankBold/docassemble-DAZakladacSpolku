@@ -31,7 +31,7 @@ def save_document(row_id: int, file_type: str, url_for: str, size: int, mimetype
 
     results = update_record(table_id="mkejxthrd05vdcc", data=data, row_id=row_id)
 
-    return results
+    return results, data
 
 def load_spolek_data(id: int):
 
