@@ -14,7 +14,7 @@ code: |
     for key, value in spolek_raw.items():
       define(f"Spolek.{key}", value)
 
-    json_response("url":{stanovy.url_for(temporary=True)})
+    json_response({"url":stanovy.url_for(temporary=True)})
 
   else:
     json_response("Error")
