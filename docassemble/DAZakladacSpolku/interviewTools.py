@@ -1,7 +1,7 @@
 import requests
 import json
 
-from docassemble.DATools.nocodb import list_nocodb_record
+from docassemble.DATools.nocodb import list_nocodb_record, update_record
 
 def get_questions_from_nocodb(table_id: str, filter: str= ""):
     data = list_nocodb_record(table_id=table_id, fields="label,field,datatype,input type,choices,show if,help", filter=filter)
@@ -13,14 +13,24 @@ def get_questions_from_nocodb(table_id: str, filter: str= ""):
 
     return updated_data
 
-def save_spolek_data(data):
+def save_spolek_data(data: dict):
+    # TODO:
+    # - Nedělat přes Make, ale volat přímo NocoDB. Zde by mělo jít vždy o aktualizaci existujícího záznamu v NocoDB. Záznam vytváříme ve chvíli, kdy si koupili spolek a pak se jen upravuje.
     output = {}
     output["Spolek"] = flatten_json(data["Spolek"])
 
-    requests.post('https://hook.eu1.make.com/qajj4d9qshooixotv4ywkhf6isdqvf5j', data=json.dumps(output),headers={'Content-Type': 'application/json'})
+    results = update_record(table_id="mkejxthrd05vdcc", data=flatten_json(data["Spolek"]), row_id=data["Spolek"]["row_id"])
 
     return True
 
+def load_spolek_data(id):
+
+    data = list_nocodb_record(table_id="mkejxthrd05vdcc", fields="dataSpolek", filter=f"(Id,eq,{id})")
+
+    if len(data) == 1:
+        return data
+    else:
+        return False
 
 def flatten_json(data, prefix=''):
     result = {}
