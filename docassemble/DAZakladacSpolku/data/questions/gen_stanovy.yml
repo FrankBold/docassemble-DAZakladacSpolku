@@ -1,0 +1,28 @@
+modules:
+  - .interviewTools
+---
+include:
+  - objectSpolek.yml
+---
+mandatory: True
+code: |
+  if "spolek_id" in url_args:
+
+    Spolek.row_id = url_args["spolek_id"]
+    spolek_raw = load_spolek_data(Spolek.row_id)
+
+    for key, value in spolek_raw.items():
+      define(f"Spolek.{key}", value)
+
+    json_response(stanovy.pdf.number)
+    
+  else:
+    json_response("Error")
+---
+attachment:
+  name: Stanovy spolku
+  filename: Stanovy_spolku
+  variable name: stanovy
+  docx template file: Stanovy.docx
+  valid formats:
+    - docx
