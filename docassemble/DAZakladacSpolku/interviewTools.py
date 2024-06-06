@@ -25,20 +25,11 @@ def save_spolek_data(data: dict):
 
     return results
 
-def save_document(row_id: int, file_type: str, url_for: str, size: int, mimetype: str = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"):
+def get_document_url(row_id: int, document: str):
 
-    data = {
-        "Stanovy": [{
-            "mimetype": mimetype,
-            "size": size,
-            "title": file_type,
-            "url": url_for
-        }]
-    }
-
-    results = update_record(table_id="mkejxthrd05vdcc", content=data, row_id=row_id)
-
-    return results, data
+    match document:
+        case "stanovy":
+            return requests.get(url=f"https://da-test.frankbold.org/interview?i=docassemble.playground1ZakladacSpolku:gen_stanovy.yml&reset=1&spolek_id={row_id}")
 
 def load_spolek_data(id: int):
 

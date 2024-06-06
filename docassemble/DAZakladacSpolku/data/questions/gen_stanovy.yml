@@ -1,6 +1,3 @@
-modules:
-  - .interviewTools
----
 include:
   - objectSpolek.yml
 ---
@@ -14,9 +11,7 @@ code: |
     for key, value in spolek_raw.items():
       define(f"Spolek.{key}", value)
 
-    results = save_document(row_id=Spolek.row_id, file_type=stanovy.filename, url_for=stanovy.url_for(temporary=True), size=5468)
-
-    json_response(results)
+    json_response(stanovy.url_for(temporary=True))
 
   else:
     json_response("Error")

@@ -11,10 +11,6 @@ mandatory: True
 code: |
   uvod
   stanovy
-  souhlasy
-  sidlo
-  zivnost
-  navrh
   vystup
 ---
 sections: 
@@ -45,6 +41,11 @@ fields:
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,stanovy)")
 continue button field: stanovy
 ---
+code: |
+  url_stanovy = 
+---
 event: vystup
 question: |
   Hotovo, data odeslána
+subquestion: |
+    ${ action_button_html(url_stanovy, label="Stáhnout soubor", color="primary", size="md") }
