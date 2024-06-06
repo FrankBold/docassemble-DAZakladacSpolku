@@ -14,7 +14,7 @@ code: |
     for key, value in spolek_raw.items():
       define(f"Spolek.{key}", value)
 
-    results = save_document(row_id=Spolek.row_id, file_type="stanovy", url_for=stanovy.url_for(temporary=True), size=stanovy.size_in_bytes())
+    results = save_document(row_id=Spolek.row_id, file_type="stanovy", url_for=stanovy.url_for(temporary=True), size=0)
 
     json_response(results)
 
