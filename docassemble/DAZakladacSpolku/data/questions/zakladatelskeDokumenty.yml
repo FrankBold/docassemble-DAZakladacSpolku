@@ -10,13 +10,15 @@ modules:
 mandatory: True
 code: |
   uvod
-  stanovy
+  identifikace
+  cinnosti
   vystup
 ---
 sections: 
   - stanovy: Stanovy
     subsections:
       - identifikace: Identifikace spolku
+      - cinnosti: Činnost spolku
   - zapis: Zápis z ustavující schůze
   - souhlasy: Souhlas členů orgánů
   - sidlo: Souhlas vlastníka nemovitosti
@@ -40,7 +42,7 @@ question: |
   Informace pro sestavení stanov spolku
 fields: 
   - code: |
-      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,stanovy)")
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,identifikace)")
   - html: |
       <div id="unikatni" class="alert alert-success d-none" role="alert">
         Nezalezli jsme žádnou významnou shodu. Název tak je pravděpodobně k dispozici.<br><br>
@@ -51,7 +53,7 @@ fields:
         <a href="${ url_of('help') }"><i class="fas fa-question-circle"></i> Jak poznat jedinečnost názvu?</a>
       </div>
       <span id="resultsArea"></span>
-continue button field: stanovy
+continue button field: identifikace
 script: |
   <script type="application/javascript" charset="utf-8">
     $("#overit").click(function(){
@@ -78,6 +80,44 @@ script: |
       return false;
     });
   </script>
+---
+sets:
+  - Spolek.ucel
+  - Spolek.popis
+  - Spolek.zivnost.exists
+  - Spolek.zivnost.cinnosti
+section: cinnosti
+question: |
+  Co bude spolek dělat
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,cinnosti)")
+continue button field: cinnosti
+---
+sets:
+  - Spolek.nejvyssiOrgan.cetnost
+  - Spolek.nejvyssiOrgan.pravomoc
+  - Spolek.nejvyssiOrgan.perrollam
+section: nejvyssiOrgani
+question: |
+  Nejvyšší orgán spolku
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,nejvyssiOrgan)")
+continue button field: nejvyssiOrgan
+---
+sets:
+  - Spolek.statutar.druh
+  - Spolek.statutar.clen.target_number
+  - Spolek.statutar.obdobi
+  - Spolek.statutar.zpusobJednani
+section: statutar
+question: |
+  Statutární orgán spolku
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,statutar)")
+continue button field: statutar
 ---
 event: overit
 code: |
