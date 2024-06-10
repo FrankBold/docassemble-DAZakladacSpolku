@@ -1,0 +1,8 @@
+objects:
+  - Spolek: DAObject
+  - Spolek.clenstvi: DAObject
+  - Spolek.zivnost: DAObject
+  - Spolek.nejvyssiOrgan: DAObject
+  - Spolek.zivnost: DAObject
+  - Spolek.statutar: DAObject
+  - Spolek.statutar.clen: DAList

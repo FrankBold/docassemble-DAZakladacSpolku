@@ -1,0 +1,137 @@
+include:
+  - setup.yml
+---
+features:
+  navigation: True
+---
+modules:
+  - .interviewTools
+---
+mandatory: True
+code: |
+  uvod
+  identifikace
+  cinnosti
+  nejvyssiOrgan
+  statutar
+  vystup
+---
+sections: 
+  - stanovy: Stanovy
+    subsections:
+      - identifikace: Identifikace spolku
+      - cinnosti: Činnost spolku
+      - nejvyssiOrgan: Nejvyšší orgán spolku
+      - statutar: Statutární orgán spolku
+  - zapis: Zápis z ustavující schůze
+  - souhlasy: Souhlas členů orgánů
+  - sidlo: Souhlas vlastníka nemovitosti
+  - zivnost: Živnostenské oprávnění
+  - navrh: Návrh na zápis spolku
+progressive: False
+---
+question: |
+  Zakladatelské dokumenty
+subquestion: |
+  V této části připravíme veškeré dokumenty, které potřebujete k založení spolku.
+
+  Pro jednotlivé varianty vycházíme z parametrů, které jsme zadali v předchozím kroku. 
+continue button field: uvod
+---
+sets:
+  - Spolek.name
+  - Spolek.address
+section: identifikace
+question: |
+  Informace pro sestavení stanov spolku
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,identifikace)")
+  - html: |
+      <div id="unikatni" class="alert alert-success d-none" role="alert">
+        Nezalezli jsme žádnou významnou shodu. Název tak je pravděpodobně k dispozici.<br><br>
+        Doporučujeme však ujistit se i <a href="https://or.justice.cz/ias/ui/rejstrik">přímo v rejstříku</a>.
+      </div>
+      <div id="duplicita" class="alert alert-warning d-none" role="alert">
+        Nalezli jsme spolky s podobným názvem. Zhodnoťte, zda názvy nejsou zaměnitelné, připadně vyberte jiný název spolku.<br><br>
+        <a href="${ url_of('help') }"><i class="fas fa-question-circle"></i> Jak poznat jedinečnost názvu?</a>
+      </div>
+      <span id="resultsArea"></span>
+continue button field: identifikace
+script: |
+  <script type="application/javascript" charset="utf-8">
+    $("#overit").click(function(){
+      $("#resultsArea").html('<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>')
+      $("#unikatni").removeClass("d-block");
+      $("#unikatni").addClass("d-none");
+      $("#duplicita").removeClass("d-block");
+      $("#duplicita").addClass("d-none");
+      action_call('overit', {firma: val('Spolek.name.text')}, function(data){
+        $("#resultsArea").html("")
+        if(data.spolek == "False") {
+        $("#unikatni").removeClass("d-none");
+        $("#unikatni").addClass("d-block");
+        } else {
+        $("#duplicita").removeClass("d-none");
+        $("#duplicita").addClass("d-block");
+        $("#resultsArea").append("<ul>")
+        var i;
+        for (i=0; i < data.spolek.length; i++) {
+          $("#resultsArea").append("<li>"+ data.spolek[i] +"</li>")
+        }
+        $("#resultsArea").append("</ul>")}
+      });
+      return false;
+    });
+  </script>
+---
+sets:
+  - Spolek.ucel
+  - Spolek.popis
+  - Spolek.zivnost.exists
+  - Spolek.zivnost.cinnosti
+section: cinnosti
+question: |
+  Co bude spolek dělat
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,cinnosti)")
+continue button field: cinnosti
+---
+sets:
+  - Spolek.nejvyssiOrgan.cetnost
+  - Spolek.nejvyssiOrgan.pravomoc
+  - Spolek.nejvyssiOrgan.perrollam
+section: nejvyssiOrgan
+question: |
+  Nejvyšší orgán spolku
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,nejvyssiOrgan)")
+continue button field: nejvyssiOrgan
+---
+sets:
+  - Spolek.statutar.druh
+  - Spolek.statutar.clen.target_number
+  - Spolek.statutar.obdobi
+  - Spolek.statutar.zpusobJednani
+section: statutar
+question: |
+  Statutární orgán spolku
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,statutar)")
+continue button field: statutar
+---
+event: overit
+code: |
+  json_response("Nic zatim")
+---
+code: |
+  url_stanovy = get_document_url(row_id=Spolek.row_id, document="stanovy")
+---
+event: vystup
+question: |
+  Hotovo, data odeslána
+subquestion: |
+    ${ action_button_html(url_stanovy["url"], label="Stáhnout soubor", color="primary", size="md") }

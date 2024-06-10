@@ -1,0 +1,108 @@
+include:
+  - setup.yml
+---
+features:
+  navigation: True
+---
+modules:
+  - .interviewTools
+---
+mandatory: True
+code: |
+  uvod
+  cinnost
+  fungovani
+  organy
+  clenstvi
+  zalozeni
+  vystup
+---
+sections: 
+  - spolek: Spolek
+    subsections:
+    - cinnost: Činnosti
+    - fungovani: Fungování spolku
+  - organy: Orgány spolku
+  - clenstvi: Členství
+  - zalozeni: Proces založení
+progressive: False
+---
+question: |
+  Charakteristika spolku
+subquestion: |
+  Než začnete vytvářet stanovy a další zakládající dokumenty, je dobré si s ostatními zakladateli ujasnit v jaké podobě má být spolek založen a jak má fungovat.
+
+  V této části vás provedeme jednotlivými věcmi, které si potřebujete vyjasnit předtím, než začnete psát stanovy.
+
+  Tento dotazník si také můžete stáhnout v PDF podobě jako podklad, který můžete projít s ostatními zakladateli vašeho budoucího spolku.
+continue button field: uvod
+action buttons:
+  - label: Stáhnout PDF
+    action: downloadPDF
+    color: danger
+    icon: forward
+---
+sets:
+  - Spolek.cinnost
+  - Spolek.ucel
+  - Spolek.podnikani
+section: cinnost
+question: |
+  Základní informace o spolku
+subquestion: |
+  V této části si určíte základní informace o spolku. Čemu se bude věnovat a nutné věci.
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,cinnost)")
+continue button field: cinnost
+---
+sets:
+  - Spolek.sidlo
+  - Spolek.cizinci
+section: fungovani
+question: |
+  Informace k fungování spolku
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,fungovani)")
+continue button field: fungovani
+---
+sets:
+  - Spolek.statutar
+  - Spolek.organy
+  - Spolek.volebniObdobi
+  - Spolek.volebniObdobiRoky
+section: organy
+question: |
+  Vymezení základních orgánů spolku
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,organy)")
+continue button field: organy
+---
+sets:
+  - Spolek.clenstvi.cestne
+  - Spolek.clenstvi.prispevky
+  - Spolek.rozhodovaniClenskeSchuze
+section: clenstvi
+question: |
+  Otázky spojené s členstvím ve spolku
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,clenstvi)")
+continue button field: clenstvi
+---
+sets: 
+  - Spolek.zalozeni
+  - Spolek.elektronicky
+section: zalozeni
+question: |
+  Je také dobré se připravit na samotný proces založení
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,zalozeni)")
+continue button field: zalozeni
+---
+event: vystup
+question: |
+  Hotovo, data odeslána
