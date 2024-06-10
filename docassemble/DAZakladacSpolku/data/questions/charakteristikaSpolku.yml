@@ -4,9 +4,6 @@ include:
 features:
   navigation: True
 ---
-modules:
-  - .interviewTools
----
 mandatory: True
 code: |
   uvod

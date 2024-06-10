@@ -44,7 +44,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.DAZakladacSpolku',
-      version='0.0.1',
+      version='0.0.2',
       description=('A docassemble extension.'),
       long_description='# docassemble.DAZakladacSpolku\n\nA docassemble extension.\n\n## Author\n\nSystem Administrator, michal.kuk+datestadmin@frankbold.org\n\n',
       long_description_content_type='text/markdown',
