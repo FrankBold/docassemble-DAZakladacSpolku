@@ -12,6 +12,8 @@ code: |
   uvod
   identifikace
   cinnosti
+  nejvyssiOrgan
+  statutar
   vystup
 ---
 sections: 
@@ -19,6 +21,8 @@ sections:
     subsections:
       - identifikace: Identifikace spolku
       - cinnosti: Činnost spolku
+      - nejvyssiOrgan: Nejvyšší orgán spolku
+      - statutar: Statutární orgán spolku
   - zapis: Zápis z ustavující schůze
   - souhlasy: Souhlas členů orgánů
   - sidlo: Souhlas vlastníka nemovitosti
@@ -98,7 +102,7 @@ sets:
   - Spolek.nejvyssiOrgan.cetnost
   - Spolek.nejvyssiOrgan.pravomoc
   - Spolek.nejvyssiOrgan.perrollam
-section: nejvyssiOrgani
+section: nejvyssiOrgan
 question: |
   Nejvyšší orgán spolku
 fields: 
