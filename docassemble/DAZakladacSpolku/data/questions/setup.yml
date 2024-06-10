@@ -5,6 +5,9 @@ metadata:
 include:
   - objectSpolek.yml
 ---
+modules:
+  - .interviewTools
+---
 features:
   progress bar: True
   question help button: True
