@@ -120,6 +120,52 @@ fields:
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,statutar)")
 continue button field: statutar
 ---
+sets:
+  - Spolek.clenstvi.poplatky
+  - Spolek.clenstvi.cestne
+section: clenstvi
+question: |
+  Členství ve spolků
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,clenstvi)")
+continue button field: clenstvi
+---
+sets:
+  - Spolek.zalozeni.typ
+  - Spolek.zalozeni.pocetZakladatelu
+section: zalozeni
+question: |
+  Založení spolku
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,zalozeni)")
+continue button field: zalozeni
+---
+sets:
+  - Spolek.kontrolniKomise.exist
+  - Spolek.rozhodciKomise.exist
+  - Spolek.rada.exist
+section: organy
+question: |
+  Další orgány spolku
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,organy)")
+continue button field: organy
+---
+sets:
+  - Spolek.sidlo.typ
+  - Spolek.sidlo.vlastnik.vice
+  - Spolek.sidlo.vlastnik.pocet
+section: sidlo
+question: |
+  Sídlo spolku a souhlas
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,sidlo)")
+continue button field: sidlo
+---
 event: overit
 code: |
   json_response("Nic zatim")

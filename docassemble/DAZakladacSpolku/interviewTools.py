@@ -39,6 +39,7 @@ def get_document_url(row_id: int, document: str):
 
     match document:
         case "stanovy":
+            # TODO: Upravit URL na univerzální variantu pro testovací i ostrou verzi.
             return call_with_error_check(f"https://da-test.frankbold.org/interview?i=docassemble.playground1ZakladacSpolku:gen_stanovy.yml&reset=1&spolek_id={row_id}")
         
 
