@@ -12,3 +12,4 @@ objects:
   - Spolek.rozhodciKomise: DAObject
   - Spolek.rada: DAObject
   - Spolek.sidlo: DAObject
+  - Spolek.sidlo.vlastnik: DAObject
