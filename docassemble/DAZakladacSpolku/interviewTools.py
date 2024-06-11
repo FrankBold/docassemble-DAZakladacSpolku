@@ -20,7 +20,8 @@ def save_spolek_data(data: dict):
     row_id = data["Spolek"]["row_id"]
 
     data = {
-        "dataSpolek": json.dumps(flatten_json(data["Spolek"]))
+        "dataSpolek": json.dumps(data["Spolek"])
+        #"dataSpolek": json.dumps(flatten_json(data["Spolek"]))
     }
     #temp
     results = update_record(table_id="mkejxthrd05vdcc", content=data, row_id=row_id)
@@ -48,7 +49,7 @@ def load_spolek_data(id: int):
     data = list_nocodb_record(table_id="mkejxthrd05vdcc", fields="dataSpolek", filter=f"(Id,eq,{id})")
 
     if len(data) == 1:
-        return data[0]["dataSpolek"]
+        return flatten_json(data[0]["dataSpolek"])
     else:
         return False
 
