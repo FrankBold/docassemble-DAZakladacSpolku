@@ -20,7 +20,7 @@ def save_spolek_data(data: dict):
     row_id = data["Spolek"]["row_id"]
 
     data = {
-        "dataSpolek": json.dumps(flatten_json(data["Spolek"]))
+        "dataSpolek": json.dumps(data["Spolek"])
     }
     #temp
     results = update_record(table_id="mkejxthrd05vdcc", content=data, row_id=row_id)
@@ -39,6 +39,7 @@ def get_document_url(row_id: int, document: str):
 
     match document:
         case "stanovy":
+            # TODO: Upravit URL na univerzální variantu pro testovací i ostrou verzi.
             return call_with_error_check(f"https://da-test.frankbold.org/interview?i=docassemble.playground1ZakladacSpolku:gen_stanovy.yml&reset=1&spolek_id={row_id}")
         
 
@@ -47,7 +48,7 @@ def load_spolek_data(id: int):
     data = list_nocodb_record(table_id="mkejxthrd05vdcc", fields="dataSpolek", filter=f"(Id,eq,{id})")
 
     if len(data) == 1:
-        return data[0]["dataSpolek"]
+        return flatten_json(data[0]["dataSpolek"])
     else:
         return False
 

@@ -6,3 +6,10 @@ objects:
   - Spolek.zivnost: DAObject
   - Spolek.statutar: DAObject
   - Spolek.statutar.clen: DAList
+  - Spolek.clenstvi: DAObject
+  - Spolek.zalozeni: DAObject
+  - Spolek.kontrolniKomise: DAObject
+  - Spolek.rozhodciKomise: DAObject
+  - Spolek.rada: DAObject
+  - Spolek.sidlo: DAObject
+  - Spolek.sidlo.vlastnik: DAObject
