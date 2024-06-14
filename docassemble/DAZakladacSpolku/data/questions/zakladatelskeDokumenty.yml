@@ -183,3 +183,6 @@ attachment:
   docx template file: Stanovy.docx
   valid formats:
     - docx
+---
+include:
+  - code_tools.yml
