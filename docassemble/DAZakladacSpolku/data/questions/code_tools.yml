@@ -6,3 +6,7 @@ code: |
 ---
 code: |
   zivnostSeznam = string_2_pole(Spolek.zivnost.cinnosti)
+---
+code: |
+  if Spolek.statutar.druh == 'predseda':
+    Spolek.statutar.clen.target_number = 1
