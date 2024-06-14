@@ -20,7 +20,7 @@ code: |
   count = 1
   Spolek.statutar.clen.there_are_any = True
   while count <= Spolek.statutar.clen.target_number:
-    Spolek.statutar.clen.appendObject(Person)
+    Spolek.statutar.clen.appendObject()
     if Spolek.statutar.druh == 'predseda':
       Spolek.statutar.clen[-1].label = 'předsedy'
     else:
@@ -38,7 +38,7 @@ code: |
     else:
       Spolek.zalozeni.navrhovatel.pocet = 3
     while count <= Spolek.zalozeni.navrhovatel.pocet:
-      Spolek.zalozeni.navrhovatel.appendObject(Person)
+      Spolek.zalozeni.navrhovatel.appendObject()
       Spolek.zalozeni.navrhovatel[-1].label = 'zakládajícího člena'
       Spolek.zalozeni.navrhovatel[-1].cislo = count
       count = count + 1
