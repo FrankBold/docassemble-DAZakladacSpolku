@@ -11,3 +11,31 @@ code: |
 code: |
   if Spolek.statutar.druh == 'predseda':
     Spolek.statutar.clen.target_number = 1
+---
+code: |
+  count = 1
+  Spolek.statutar.clen.there_are_any = True
+  while count <= Spolek.statutar.clen.target_number:
+    Spolek.statutar.clen.appendObject(Person)
+    if Spolek.statutar.druh == 'predseda':
+      Spolek.statutar.clen[-1].label = 'předsedy'
+    else:
+      Spolek.statutar.clen[-1].label = 'člena výboru'
+    Spolek.statutar.clen[-1].cislo = count
+    count = count + 1
+  Spolek.statutar.clen.there_is_another = False
+---
+code: |
+  count = 1
+  if Spolek.statutar.clen.there_is_another == False:
+    Spolek.zalozeni.navrhovatel.there_are_any = True
+    if Spolek.zalozeni.typ == 'schuze':
+      Spolek.zalozeni.navrhovatel.pocet = 1
+    else:
+      Spolek.zalozeni.navrhovatel.pocet = 3
+    while count <= Spolek.zalozeni.navrhovatel.pocet:
+      Spolek.zalozeni.navrhovatel.appendObject(Person)
+      Spolek.zalozeni.navrhovatel[-1].label = 'zakládajícího člena'
+      Spolek.zalozeni.navrhovatel[-1].cislo = count
+      count = count + 1
+    Spolek.zalozeni.navrhovatel.there_is_another = False
