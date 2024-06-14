@@ -174,6 +174,8 @@ event: vystup
 question: |
   Hotovo, data odeslána
 subquestion: |
+    ${ url_stanovy }
+
     ${ action_button_html(url_stanovy["url"], label="Stáhnout soubor", color="primary", size="md") }
 ---
 attachment:

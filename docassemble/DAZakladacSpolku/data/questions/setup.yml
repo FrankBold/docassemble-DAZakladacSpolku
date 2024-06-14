@@ -16,7 +16,6 @@ features:
   question back button: True
   navigation back button: False
   go full screen: True
-
 ---
 mandatory: True
 code: |
