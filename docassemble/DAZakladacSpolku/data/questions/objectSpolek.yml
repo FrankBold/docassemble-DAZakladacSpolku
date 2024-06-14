@@ -1,5 +1,5 @@
 objects:
-  - Spolek: DAObject
+  - Spolek: Thing
   - Spolek.clenstvi: DAObject
   - Spolek.zivnost: DAObject
   - Spolek.nejvyssiOrgan: DAObject
