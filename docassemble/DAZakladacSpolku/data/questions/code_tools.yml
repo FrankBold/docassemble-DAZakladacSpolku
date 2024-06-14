@@ -13,6 +13,10 @@ code: |
     Spolek.statutar.clen.target_number = 1
 ---
 code: |
+  if Spolek.zalozeni.typ == 'schuze':
+    Spolek.zalozeni.pocetZakladatelu = 1
+---
+code: |
   count = 1
   Spolek.statutar.clen.there_are_any = True
   while count <= Spolek.statutar.clen.target_number:
