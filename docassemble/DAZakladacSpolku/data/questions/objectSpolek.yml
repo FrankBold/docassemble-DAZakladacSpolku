@@ -1,6 +1,7 @@
 mandatory: True
 code: |
   Spolek = Thing
+  Spolek.row_id = 3
   Spolek.clenstvi = DAObject
   Spolek.zivnost = DAObject
   Spolek.nejvyssiOrgan = DAObject
