@@ -8,7 +8,7 @@ objects:
   - Spolek.statutar.clen: PartyList.using(object_type=Person, label="člena statutárního orgánu")
   - Spolek.clenstvi: DAObject
   - Spolek.zalozeni: DAObject
-  - Spolek.zalozeni.navrhovatel: PartyList.using(object_type=Person.using(funkce="True"), label="navrhovatel zápisu spolku")
+  - Spolek.zalozeni.navrhovatel: PartyList.using(object_type=Person label="navrhovatel zápisu spolku")
   - Spolek.kontrolniKomise: DAObject
   - Spolek.rozhodciKomise: DAObject
   - Spolek.rada: DAObject
