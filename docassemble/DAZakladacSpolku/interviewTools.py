@@ -79,6 +79,6 @@ def contains_spolek(x):
     validation_error('Název spolku <strong>musí</strong> obsahovat "z. s.", "spolek", nebo "zapsaný spolek"')
   return
 
-def string_pole(x):
+def string_2_pole(x):
   x = x.split('\r\n')
   return x
