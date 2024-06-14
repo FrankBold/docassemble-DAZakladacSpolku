@@ -23,6 +23,7 @@ features:
 ---
 mandatory: True
 code: |
+  Spolek.row_id = 3
   spolek_raw = load_spolek_data(Spolek.row_id)
 
   for key, value in spolek_raw.items():
