@@ -1,7 +1,7 @@
 generic object: Person
 question: |
   % if defined('x.cislo') and x.cislo != 1:
-  Indentifikační člena orgánu údaje:
+  Indentifikační údaje člena orgánu:
   <br>
   **${ x.cislo }. ${ x.label }**
   % else:
