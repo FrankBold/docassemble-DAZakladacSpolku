@@ -33,7 +33,7 @@ subquestion: |
 continue button field: uvod
 ---
 sets:
-  - Spolek.name
+  - Spolek.name.text
   - Spolek.address
 section: identifikace
 question: |
