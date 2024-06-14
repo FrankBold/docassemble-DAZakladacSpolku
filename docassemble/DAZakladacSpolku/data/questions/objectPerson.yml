@@ -78,8 +78,6 @@ script: |
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
   <script src="${url_of('mapy_api_suggestions.js')}"></script>
 ---
-need:
-  - Spolek.zalozeni.pocetZakladatelu
 question: |
   % if Spolek.zalozeni.typ == 'schuze':
   Identifikační údaje osoby pověřené zápisem spolku.
