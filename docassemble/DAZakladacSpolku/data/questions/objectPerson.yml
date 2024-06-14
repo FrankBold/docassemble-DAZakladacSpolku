@@ -1,0 +1,82 @@
+generic object: Person
+question: |
+  % if defined('x.cislo') and x.cislo != 1:
+  Indentifikační člena orgánu údaje:
+  <br>
+  **${ x.cislo }. ${ x.label }**
+  % else:
+  Indetifikační údaje:
+  <br>
+  **${ x.label }**
+  % endif
+fields:
+  - Typ osoby: x.forma
+    input type: radio
+    choices:
+      - Právnická osoba: PO
+      - Fyzická osoba: FO
+  - Jméno a příjmení: x.name.text
+    show if:
+      variable: x.forma
+      is: FO
+  - Trvalé bydliště: x.address
+    css class: addressAutocomplete
+    show if:
+      variable: x.forma
+      is: FO
+  - IČO: x.ic
+    datatype: integer
+    minlength: 8
+    maxlength: 8
+    show if:
+      variable: x.forma
+      is: PO
+    hint: 12345678
+    note: |
+      <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
+  - Název organizace: x.name.text
+    show if:
+      variable: x.forma
+      is: PO
+  - Sídlo: x.address
+    css class: addressAutocomplete
+    hint: Sídlo
+    show if:
+      variable: x.forma
+      is: PO
+  - note: |
+      **Zástupce společnosti**
+    show if:
+      variable: x.forma
+      is: PO
+  - Vaše jméno: x.zastupceName
+    required: False
+    show if:
+      variable: x.forma
+      is: PO
+  - Vaše pozice v organizaci: x.zastupceFunkce
+    required: False
+    show if:
+      variable: x.forma
+      is: PO
+css: |
+  <link rel="stylesheet" href="${url_of('autocomplete.css')}">
+script: |
+  <script type="application/javascript" charset="utf-8">
+    $("#doplnit").click(function(){
+      action_call('doplnUdaje', {ico: val('x.ic')}, function(data){
+        if (typeof data.test.firma !== 'undefined') {
+        setField("x.name.text", data.test.firma);
+        setField("x.ic", data.test.ico);
+        setField("x.address", data.test.sidlo);
+        } else if (typeof data.test == 'object') {
+          action_perform('vyberFirmy')
+        } else {
+        flash(data.test, "danger")
+        }
+      });
+      return false;
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+  <script src="${url_of('mapy_api_suggestions.js')}"></script>
