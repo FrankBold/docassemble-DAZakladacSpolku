@@ -5,7 +5,7 @@ objects:
   - Spolek.nejvyssiOrgan: DAObject
   - Spolek.zivnost: DAObject
   - Spolek.statutar: DAObject
-  - Spolek.statutar.clen: DAList.using(bject_type=Person, label="člena statutárního orgánu")
+  - Spolek.statutar.clen: DAList.using(object_type=Person, label="člena statutárního orgánu")
   - Spolek.clenstvi: DAObject
   - Spolek.zalozeni: DAObject
   - Spolek.kontrolniKomise: DAObject
