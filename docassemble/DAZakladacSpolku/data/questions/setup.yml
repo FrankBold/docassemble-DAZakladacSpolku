@@ -4,6 +4,7 @@ metadata:
 ---
 include:
   - objectSpolek.yml
+  - objectPerson.yml
   - code_tools.yml
 ---
 modules:
