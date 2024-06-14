@@ -1,4 +1,4 @@
-generic object: Person
+generic object: DAObject
 question: |
   Identifikační údaje
 fields:
