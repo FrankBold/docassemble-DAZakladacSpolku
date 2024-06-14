@@ -55,7 +55,7 @@ def load_spolek_data(id: int):
 def flatten_json(data, prefix=''):
     result = {}
     for key, value in data.items():
-        if key in ("_class", "instanceName", "elements", "ask_number","ask_object_type","auto_gather","complete_attribute","minimum_number","object_type","object_type_parameters"):  # Skip these keys
+        if key in ("_class", "instanceName", "elements", "ask_number","ask_object_type","auto_gather","complete_attribute","minimum_number","object_type","object_type_parameters", "there_are_any"):  # Skip these keys
             continue
 
         new_key = f"{prefix}.{key}" if prefix else key
