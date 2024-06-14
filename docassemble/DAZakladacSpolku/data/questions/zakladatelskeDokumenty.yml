@@ -174,7 +174,7 @@ event: vystup
 question: |
   Hotovo, data odeslána
 subquestion: |
-    ${ url_stanovy }
+    ${ all_variables() }
 
 
 ---
