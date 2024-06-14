@@ -7,7 +7,7 @@ fields:
     choices:
       - Právnická osoba: PO
       - Fyzická osoba: FO
-  - Jméno a příjmení: x.name.first
+  - Jméno a příjmení: x.name.text
     show if:
       variable: x.forma
       is: FO
@@ -31,7 +31,7 @@ fields:
     hint: 12345678
     note: |
       <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
-  - Název organizace: x.name.first
+  - Název organizace: x.name.text
     show if:
       variable: x.forma
       is: PO
