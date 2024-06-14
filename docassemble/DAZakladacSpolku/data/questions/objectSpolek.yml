@@ -5,10 +5,10 @@ objects:
   - Spolek.nejvyssiOrgan: DAObject
   - Spolek.zivnost: DAObject
   - Spolek.statutar: DAObject
-  - Spolek.statutar.clen: DAList.using(there_are_any=True, object_type=Person, label="člena statutárního orgánu")
+  - Spolek.statutar.clen: DAList.using(object_type=Person, label="člena statutárního orgánu")
   - Spolek.clenstvi: DAObject
   - Spolek.zalozeni: DAObject
-  - Spolek.zalozeni.navrhovatel: DAList.using(there_are_any=True, object_type=Person.using(funkce="True"), label="navrhovatel zápisu spolku")
+  - Spolek.zalozeni.navrhovatel: DAList.using(object_type=Person.using(funkce="True"), label="navrhovatel zápisu spolku")
   - Spolek.kontrolniKomise: DAObject
   - Spolek.rozhodciKomise: DAObject
   - Spolek.rada: DAObject
