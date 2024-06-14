@@ -2,6 +2,10 @@ metadata:
   tags:
     - Zakladač spolků
 ---
+mandatory: True
+code: |
+  loading_done = False
+---
 include:
   - objectSpolek.yml
   - objectPerson.yml
