@@ -3,3 +3,6 @@ code: |
 ---
 code: |
   pravomociSeznam = string_2_pole(Spolek.nejvyssiOrgan.pravomoc)
+---
+code: |
+  zivnostSeznam = string_2_pole(Spolek.zivnost.cinnosti)
