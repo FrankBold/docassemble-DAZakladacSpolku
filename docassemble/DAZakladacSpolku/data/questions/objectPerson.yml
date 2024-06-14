@@ -81,13 +81,7 @@ script: |
 need:
   - Spolek.zalozeni.pocetZakladatelu
 question: |
-  % if Spolek.zalozeni.typ == 'schuze':
-  Identifikační údaje osoby pověřené zápisem spolku.
-  % else:
-  Indentifikační údaje:
-
-  **${ Spolek.zalozeni.navrhovatel[i].cislo }. ${ Spolek.zalozeni.navrhovatel[i].label }**
-  % endif
+  Info zakladatele
 fields:
   - Někdo z členů: Spolek.zalozeni.navrhovatel[i]
     datatype: object

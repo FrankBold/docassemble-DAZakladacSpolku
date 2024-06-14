@@ -30,6 +30,7 @@ code: |
   loading_done = True
 
   Spolek.statutar.clen.appendObject()
+  Spolek.zalozeni.navrhovatel.appendObject()
 ---
 initial: True
 code: |
