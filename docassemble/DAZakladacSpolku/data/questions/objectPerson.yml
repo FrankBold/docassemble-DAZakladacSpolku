@@ -1,71 +1,70 @@
-generic object: Thing
 question: |
   Identifikační údaje
 fields:
-  - Typ osoby: x.forma
+  - Typ osoby: Spolek.statutar.clen.forma
     input type: radio
     choices:
       - Právnická osoba: PO
       - Fyzická osoba: FO
-  - Jméno a příjmení: x.name.text
+  - Jméno a příjmení: Spolek.statutar.clen.name.text
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: FO
-  - Trvalé bydliště: x.address
+  - Trvalé bydliště: Spolek.statutar.clen.address
     css class: addressAutocomplete
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: FO
-  - Datum narození: x.birthday
+  - Datum narození: Spolek.statutar.clen.birthday
     datatype: date
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: FO
-  - IČO: x.ic
+  - IČO: Spolek.statutar.clen.ic
     datatype: integer
     minlength: 8
     maxlength: 8
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: PO
     hint: 12345678
     note: |
       <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
-  - Název organizace: x.name.text
+  - Název organizace: Spolek.statutar.clen.name.text
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: PO
-  - Sídlo: x.address
+  - Sídlo: Spolek.statutar.clen.address
     css class: addressAutocomplete
     hint: Sídlo
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: PO
   - note: |
       **Zástupce společnosti**
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: PO
-  - Vaše jméno: x.zastupceName
+  - Vaše jméno: Spolek.statutar.clen.zastupceName
     required: False
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: PO
-  - Vaše pozice v organizaci: x.zastupceFunkce
+  - Vaše pozice v organizaci: Spolek.statutar.clen.zastupceFunkce
     required: False
     show if:
-      variable: x.forma
+      variable: Spolek.statutar.clen.forma
       is: PO
 css: |
   <link rel="stylesheet" href="${url_of('autocomplete.css')}">
 script: |
   <script type="application/javascript" charset="utf-8">
     $("#doplnit").click(function(){
-      action_call('doplnUdaje', {ico: val('x.ic')}, function(data){
+      action_call('doplnUdaje', {ico: val('Spolek.statutar.clen.ic')}, function(data){
         if (typeof data.test.firma !== 'undefined') {
-        setField("x.name.text", data.test.firma);
-        setField("x.ic", data.test.ico);
-        setField("x.address", data.test.sidlo);
+        setField("Spolek.statutar.clen.name.text", data.test.firma);
+        setField("Spolek.statutar.clen.ic", data.test.ico);
+        setField("Spolek.statutar.clen.address", data.test.sidlo);
         } else if (typeof data.test == 'object') {
           action_perform('vyberFirmy')
         } else {
