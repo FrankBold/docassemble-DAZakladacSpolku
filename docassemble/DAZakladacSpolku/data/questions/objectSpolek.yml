@@ -5,7 +5,7 @@ objects:
   - Spolek.nejvyssiOrgan: DAObject
   - Spolek.zivnost: DAObject
   - Spolek.statutar: DAObject
-  - Spolek.statutar.clen: DAList
+  - Spolek.statutar.clen: DAList.using(there_are_any=True)
   - Spolek.clenstvi: DAObject
   - Spolek.zalozeni: DAObject
   - Spolek.kontrolniKomise: DAObject
