@@ -24,6 +24,11 @@ fields:
     show if:
       variable: x.forma
       is: FO
+  - Datum narození: x.birthday
+    datatype: date
+    show if:
+      variable: x.forma
+      is: FO
   - IČO: x.ic
     datatype: integer
     minlength: 8
