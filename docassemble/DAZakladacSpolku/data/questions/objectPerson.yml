@@ -1,14 +1,6 @@
 generic object: Person
 question: |
-  % if defined('x.cislo') and x.cislo != 1:
-  Indentifikační údaje člena orgánu:
-  <br>
-  **${ x.cislo }. ${ x.label }**
-  % else:
-  Indetifikační údaje:
-  <br>
-  **${ x.label }**
-  % endif
+  Identifikační údaje
 fields:
   - Typ osoby: x.forma
     input type: radio
