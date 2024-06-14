@@ -7,14 +7,7 @@ features:
 mandatory: True
 code: |
   uvod
-  identifikace
-  cinnosti
-  nejvyssiOrgan
-  statutar
-  clenstvi
-  zalozeni
-  organy
-  sidlo
+  stanovy
   vystup
 ---
 sections: 
@@ -182,3 +175,11 @@ question: |
   Hotovo, data odeslána
 subquestion: |
     ${ action_button_html(url_stanovy["url"], label="Stáhnout soubor", color="primary", size="md") }
+---
+attachment:
+  name: Stanovy spolku
+  filename: Stanovy_spolku
+  variable name: stanovy
+  docx template file: Stanovy.docx
+  valid formats:
+    - docx
