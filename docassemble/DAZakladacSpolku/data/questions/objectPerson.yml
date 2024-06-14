@@ -1,4 +1,4 @@
-generic object: DAObject
+generic object: Person
 question: |
   Identifikační údaje
 fields:
@@ -7,7 +7,7 @@ fields:
     choices:
       - Právnická osoba: PO
       - Fyzická osoba: FO
-  - Jméno a příjmení: x.jmeno
+  - Jméno a příjmení: x.name.first
     show if:
       variable: x.forma
       is: FO
@@ -31,7 +31,7 @@ fields:
     hint: 12345678
     note: |
       <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
-  - Název organizace: x.jmeno
+  - Název organizace: x.name.first
     show if:
       variable: x.forma
       is: PO
@@ -78,6 +78,8 @@ script: |
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
   <script src="${url_of('mapy_api_suggestions.js')}"></script>
 ---
+need:
+  - Spolek.zalozeni.pocetZakladatelu
 question: |
   % if Spolek.zalozeni.typ == 'schuze':
   Identifikační údaje osoby pověřené zápisem spolku.
@@ -94,7 +96,7 @@ fields:
       - Spolek.statutar.clen
     exclude: |
       Spolek.zalozeni.navrhovatel
-  - Jméno a příjmení: Spolek.zalozeni.navrhovatel[i].jmeno
+  - Jméno a příjmení: Spolek.zalozeni.navrhovatel[i].name.first
   - Bydliště: Spolek.zalozeni.navrhovatel[i].address
   - Datum narození: Spolek.zalozeni.navrhovatel[i].birthday
     datatype: date

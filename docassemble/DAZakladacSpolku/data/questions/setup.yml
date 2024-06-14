@@ -7,8 +7,8 @@ include:
   - objectPerson.yml
 ---
 modules:
-  - docassemble.base.legal
   - .interviewTools
+  - docassemble.base.legal
 ---
 features:
   progress bar: True
@@ -16,6 +16,7 @@ features:
   question back button: True
   navigation back button: False
   go full screen: True
+
 ---
 mandatory: True
 code: |
