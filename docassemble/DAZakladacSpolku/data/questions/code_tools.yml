@@ -2,7 +2,4 @@ code: |
   ucelySeznam = string_2_pole(Spolek.ucel)
 ---
 code: |
-  cinnostiSeznam = string_2_pole(Spolek.cinnosti)
----
-code: |
   pravomociSeznam = string_2_pole(Spolek.nejvyssiOrgan.pravomoc)
