@@ -28,6 +28,8 @@ code: |
   save_spolek_data(all_variables(make_copy=True))
 
   loading_done = True
+
+  Spolek.statutar.clen.appendObject()
 ---
 initial: True
 code: |
