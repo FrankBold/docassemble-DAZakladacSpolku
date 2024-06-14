@@ -32,7 +32,7 @@ code: |
 ---
 code: |
   count = 1
-  if Spolek.statutar.clen.there_is_another == False and len(Spolek.zalozeni.navrhovatel) < Spolek.zalozeni.navrhovatel.target_number::
+  if Spolek.statutar.clen.there_is_another == False and len(Spolek.zalozeni.navrhovatel) < Spolek.zalozeni.navrhovatel.target_number:
     Spolek.zalozeni.navrhovatel.there_are_any = True
     if Spolek.zalozeni.typ == 'schuze':
       Spolek.zalozeni.navrhovatel.pocet = 1
