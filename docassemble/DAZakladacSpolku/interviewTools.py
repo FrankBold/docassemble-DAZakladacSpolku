@@ -20,7 +20,7 @@ def save_spolek_data(data: dict):
     row_id = data["Spolek"]["row_id"]
 
     data = {
-        "dataSpolek": json.dumps(data["Spolek"])
+        "dataSpolek": json.dumps(flatten_json(data["Spolek"]))
     }
     #temp
     results = update_record(table_id="mkejxthrd05vdcc", content=data, row_id=row_id)
@@ -48,7 +48,7 @@ def load_spolek_data(id: int):
     data = list_nocodb_record(table_id="mkejxthrd05vdcc", fields="dataSpolek", filter=f"(Id,eq,{id})")
 
     if len(data) == 1:
-        return flatten_json(data[0]["dataSpolek"])
+        return data[0]["dataSpolek"]
     else:
         return False
 
@@ -56,7 +56,7 @@ def flatten_json(data, prefix=''):
     result = {} 
     if isinstance(data, dict):
         for key, value in data.items():
-            if key in ("_class", "instanceName", "elements", "ask_number","ask_object_type","auto_gather","complete_attribute","minimum_number","object_type","object_type_parameters", "there_are_any"):  # Skip these keys
+            if key in ("_class", "instanceName", "ask_number","ask_object_type","auto_gather","complete_attribute","minimum_number","object_type","object_type_parameters", "there_are_any"):  # Skip these keys
                 continue
 
             new_key = f"{prefix}.{key}" if prefix else key
