@@ -23,13 +23,7 @@ features:
 mandatory: True
 code: |
   Spolek.row_id = 3
-  spolek_raw = load_spolek_data(Spolek.row_id)
 
-  for key, value in spolek_raw.items():
-    if "elements" not in key:
-      define(f"Spolek.{key}", value)
-    else:
-      continue
 
   save_spolek_data(all_variables(make_copy=True))
 
