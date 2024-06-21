@@ -13,7 +13,7 @@ mandatory: True
 code: |
   import json
   hromadne = False
-  if "spolek_id" in url_args nad "organ" in url_args:
+  if "spolek_id" in url_args and "organ" in url_args:
 
     Spolek.row_id = url_args["spolek_id"]
     spolek_raw = load_spolek_data(Spolek.row_id)
@@ -21,27 +21,29 @@ code: |
     for key, value in spolek_raw.items():
       define(f"Spolek.{key}", value)
 
-    match url_args["spolek_id"]:
-      case "statutar"
+    match url_args["organ"]:
+      case "statutar":
         seznamOsob = Spolek.statutar.clen
+    
     if hromadne: 
-      json_response({"url":prohlaseni.url_for(temporary=True))
+      json_response({"url":prohlaseni.url_for(temporary=True)})
     else:
       files = {}
+      i=0
       for osoba in seznamOsob:
-        files["osoba.prohlaseni.filename"] = osoba.prohlaseni.url_for(temporary=True)
+        files[Spolek.statutar.clen[i].prohlaseni.filename] = Spolek.statutar.clen[i].prohlaseni.url_for(temporary=True)
+        i+=1
 
       json_response({"url":files})
 
   else:
     json_response("Error")
 ---
-generic object: DAList
 attachment:
   name: Prohlášení osob
-  filename: Prohlaseni
-  variable name: x.prohlaseni
-  docx template file: Prohlášení_${x.name.text}.docx
+  filename: Prohlaseni_${Spolek.statutar.clen[i].name.text}
+  variable name: Spolek.statutar.clen[i].prohlaseni
+  docx template file: Prohlaseni.docx
   valid formats:
     - docx
 ---
@@ -49,6 +51,6 @@ attachment:
   name: Prohlášení osob
   filename: Prohlaseni
   variable name: prohlaseni
-  docx template file: Prohlášení.docx
+  docx template file: Prohlaseni.docx
   valid formats:
     - docx
