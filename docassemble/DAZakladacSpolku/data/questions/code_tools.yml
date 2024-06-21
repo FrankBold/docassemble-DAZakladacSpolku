@@ -13,10 +13,6 @@ code: |
     Spolek.statutar.clen.target_number = 1
 ---
 code: |
-  if Spolek.zalozeni.typ == 'schuze':
-    Spolek.zalozeni.pocetZakladatelu = 1
----
-code: |
   count = 1
   Spolek.statutar.clen.there_are_any = True
   if len(Spolek.statutar.clen) < Spolek.statutar.clen.target_number:
@@ -31,13 +27,15 @@ code: |
   Spolek.statutar.clen.there_is_another = False
 ---
 code: |
+  if Spolek.zalozeni.typ == 'schuze':
+    Spolek.zalozeni.navrhovatel.target_number = 1
+  else:
+    Spolek.zalozeni.navrhovatel.target_number = Spolek.zalozeni.pocetZakladatelu
+---
+code: |
   count = 1
   if Spolek.statutar.clen.there_is_another == False and len(Spolek.zalozeni.navrhovatel) < Spolek.zalozeni.navrhovatel.target_number:
     Spolek.zalozeni.navrhovatel.there_are_any = True
-    if Spolek.zalozeni.typ == 'schuze':
-      Spolek.zalozeni.navrhovatel.pocet = 1
-    else:
-      Spolek.zalozeni.navrhovatel.pocet = 3
     while count <= Spolek.zalozeni.navrhovatel.pocet:
       Spolek.zalozeni.navrhovatel.appendObject()
       Spolek.zalozeni.navrhovatel[-1].label = 'zakládajícího člena'
