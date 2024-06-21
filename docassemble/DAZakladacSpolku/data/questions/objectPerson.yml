@@ -30,7 +30,7 @@ fields:
     hint: 12345678
     note: |
       <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
-  - Název organizace: Spolek.statutar.clen[i].name.text
+  - Název organizace: Spolek.statutar.clen[i].name
     show if:
       variable: Spolek.statutar.clen[i].forma
       is: PO
