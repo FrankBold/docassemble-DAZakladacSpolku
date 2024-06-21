@@ -24,12 +24,14 @@ code: |
     match url_args["spolek_id"]:
       case "statutar"
         seznamOsob = Spolek.statutar.clen
+    if hromadne: 
+      json_response({"url":prohlaseni.url_for(temporary=True))
+    else:
+      files = {}
+      for osoba in seznamOsob:
+        files["osoba.prohlaseni.filename"] = osoba.prohlaseni.url_for(temporary=True)
 
-    files = {}
-    for osoba in seznamOsob:
-      files["osoba.prohlaseni.filename"] = osoba.prohlaseni.url_for(temporary=True)
-
-    json_response({"url":files)
+      json_response({"url":files})
 
   else:
     json_response("Error")
@@ -40,5 +42,13 @@ attachment:
   filename: Prohlaseni
   variable name: x.prohlaseni
   docx template file: Prohlášení_${x.name.text}.docx
+  valid formats:
+    - docx
+---
+attachment:
+  name: Prohlášení osob
+  filename: Prohlaseni
+  variable name: prohlaseni
+  docx template file: Prohlášení.docx
   valid formats:
     - docx
