@@ -13,6 +13,7 @@ mandatory: True
 code: |
   import json
   hromadne = False
+  label = "statutárního orgánu"
   if "spolek_id" in url_args and "organ" in url_args:
 
     Spolek.row_id = url_args["spolek_id"]
