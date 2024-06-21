@@ -12,7 +12,7 @@ objects:
 mandatory: True
 code: |
   import json
-  hromadne = False
+  hromadne = True
   label = "statutárního orgánu"
   if "spolek_id" in url_args and "organ" in url_args:
 
@@ -32,7 +32,7 @@ code: |
       files = {}
       i=0
       for osoba in seznamOsob:
-        files[Spolek.statutar.clen[i].prohlaseni.filename] = Spolek.statutar.clen[i].prohlaseni.url_for(temporary=True)
+        files[f"soubor_{i}"] = Spolek.statutar.clen[i].prohlaseni.url_for(temporary=True)
         i+=1
 
       json_response({"url":files})
