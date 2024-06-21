@@ -6,7 +6,7 @@ fields:
     choices:
       - Právnická osoba: PO
       - Fyzická osoba: FO
-  - Jméno a příjmení: Spolek.statutar.clen[i].name
+  - Jméno a příjmení: Spolek.statutar.clen[i].name.text
     show if:
       variable: Spolek.statutar.clen[i].forma
       is: FO
@@ -30,7 +30,7 @@ fields:
     hint: 12345678
     note: |
       <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
-  - Název organizace: Spolek.statutar.clen[i].name
+  - Název organizace: Spolek.statutar.clen[i].name.text
     show if:
       variable: Spolek.statutar.clen[i].forma
       is: PO
@@ -89,7 +89,7 @@ fields:
       - Spolek.statutar[i].clen
     exclude: |
       Spolek.zalozeni.navrhovatel
-  - Jméno a příjmení: Spolek.zalozeni.navrhovatel[i].name
+  - Jméno a příjmení: Spolek.zalozeni.navrhovatel[i].name.text
   - Bydliště: Spolek.zalozeni.navrhovatel[i].address
   - Datum narození: Spolek.zalozeni.navrhovatel[i].birthday
     datatype: date
