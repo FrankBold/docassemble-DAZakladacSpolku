@@ -33,8 +33,11 @@ code: |
 
   loading_done = True
 
-  Spolek.statutar.clen.appendObject()
-  Spolek.zalozeni.navrhovatel.appendObject()
+  if len(Spolek.statutar.clen) == 0:
+    Spolek.statutar.clen.appendObject()
+  
+  if len(Spolek.zalozeni.navrhovatel) == 0:
+    Spolek.zalozeni.navrhovatel.appendObject()
 ---
 initial: True
 code: |
