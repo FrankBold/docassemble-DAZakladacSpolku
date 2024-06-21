@@ -6,7 +6,7 @@ fields:
     choices:
       - Právnická osoba: PO
       - Fyzická osoba: FO
-  - Jméno a příjmení: Spolek.statutar.clen[i].name.text
+  - Jméno a příjmení: Spolek.statutar.clen[i].name
     show if:
       variable: Spolek.statutar.clen[i].forma
       is: FO
@@ -89,7 +89,7 @@ fields:
       - Spolek.statutar[i].clen
     exclude: |
       Spolek.zalozeni.navrhovatel
-  - Jméno a příjmení: Spolek.zalozeni.navrhovatel[i].name.first
+  - Jméno a příjmení: Spolek.zalozeni.navrhovatel[i].name
   - Bydliště: Spolek.zalozeni.navrhovatel[i].address
   - Datum narození: Spolek.zalozeni.navrhovatel[i].birthday
     datatype: date
