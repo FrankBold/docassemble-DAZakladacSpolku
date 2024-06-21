@@ -15,6 +15,7 @@ sections:
     subsections:
       - identifikace: Identifikace spolku
       - cinnosti: Činnost spolku
+      - zalozeni: Způsob založení spolku
       - nejvyssiOrgan: Nejvyšší orgán spolku
       - statutar: Statutární orgán spolku
   - zapis: Zápis z ustavující schůze
@@ -181,6 +182,7 @@ attachment:
   filename: Stanovy_spolku
   variable name: stanovy
   docx template file: Stanovy.docx
+  update references: True
   valid formats:
     - docx
 ---

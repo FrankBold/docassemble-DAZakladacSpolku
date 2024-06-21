@@ -1,0 +1,44 @@
+modules:
+  - .interviewTools
+---
+include:
+  - objectSpolek.yml
+  - objectPerson.yml
+  - code_tools.yml
+---
+objects:
+  - seznamOsob: DAList
+---
+mandatory: True
+code: |
+  import json
+  hromadne = False
+  if "spolek_id" in url_args nad "organ" in url_args:
+
+    Spolek.row_id = url_args["spolek_id"]
+    spolek_raw = load_spolek_data(Spolek.row_id)
+
+    for key, value in spolek_raw.items():
+      define(f"Spolek.{key}", value)
+
+    match url_args["spolek_id"]:
+      case "statutar"
+        seznamOsob = Spolek.statutar.clen
+
+    files = {}
+    for osoba in seznamOsob:
+      files["osoba.prohlaseni.filename"] = osoba.prohlaseni.url_for(temporary=True)
+
+    json_response({"url":files)
+
+  else:
+    json_response("Error")
+---
+generic object: DAList
+attachment:
+  name: Prohlášení osob
+  filename: Prohlaseni
+  variable name: x.prohlaseni
+  docx template file: Prohlášení_${x.name.text}.docx
+  valid formats:
+    - docx

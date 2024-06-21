@@ -1,5 +1,4 @@
 modules:
-  - docassemble.base.legal
   - .interviewTools
 ---
 include:
