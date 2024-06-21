@@ -174,7 +174,12 @@ event: vystup
 question: |
   Hotovo, data odeslána
 subquestion: |
-    ${ action_button_html(url_stanovy["url"], label="Stáhnout soubor", color="primary", size="md") }
+  ${ all_variables() }
+  
+  # Flatten
+  
+  ${ flatten_json(all_variables()) }
+#    ${ action_button_html(url_stanovy["url"], label="Stáhnout soubor", color="primary", size="md") }
 ---
 attachment:
   name: Stanovy spolku

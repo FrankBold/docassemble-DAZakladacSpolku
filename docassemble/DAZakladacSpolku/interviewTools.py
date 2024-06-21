@@ -64,7 +64,7 @@ def flatten_json(data, prefix=''):
             if isinstance(value, dict) or isinstance(value, list):
                 result.update(flatten_json(value, new_key))  # Recurse for nested dicts or lists
             else:
-                result[new_key] = value
+                result[new_key.replace(".elements","")] = value
 
     elif isinstance(data, list):
         for index, value in enumerate(data):
@@ -73,7 +73,7 @@ def flatten_json(data, prefix=''):
             if isinstance(value, dict) or isinstance(value, list):
                 result.update(flatten_json(value, new_key))  # Recurse for nested dicts or lists
             else:
-                result[new_key] = value
+                result[new_key.replace(".elements","")] = value
 
     return result
 
