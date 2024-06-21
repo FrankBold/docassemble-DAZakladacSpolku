@@ -36,7 +36,7 @@ code: |
   count = 1
   if Spolek.statutar.clen.there_is_another == False and len(Spolek.zalozeni.navrhovatel) < Spolek.zalozeni.navrhovatel.target_number:
     Spolek.zalozeni.navrhovatel.there_are_any = True
-    while count <= Spolek.zalozeni.navrhovatel.pocet:
+    while count <= Spolek.zalozeni.navrhovatel.target_number:
       Spolek.zalozeni.navrhovatel.appendObject()
       Spolek.zalozeni.navrhovatel[-1].label = 'zakládajícího člena'
       Spolek.zalozeni.navrhovatel[-1].cislo = count
