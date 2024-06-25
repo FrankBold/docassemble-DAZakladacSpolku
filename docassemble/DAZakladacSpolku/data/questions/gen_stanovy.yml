@@ -3,7 +3,6 @@ modules:
 ---
 include:
   - objectSpolek.yml
-  - objectPerson.yml
   - code_tools.yml
 ---
 mandatory: True
