@@ -1,5 +1,5 @@
 question: |
-  Identifikační údaje
+  Identifikační údaje člena statutárního orgánu
 fields:
   - Typ osoby: Spolek.statutar.clen[i].forma
     input type: radio
@@ -65,6 +65,85 @@ script: |
         setField("Spolek.statutar.clen[i].name.text", data.test.firma);
         setField("Spolek.statutar.clen[i].ic", data.test.ico);
         setField("Spolek.statutar.clen[i].address", data.test.sidlo);
+        } else if (typeof data.test == 'object') {
+          action_perform('vyberFirmy')
+        } else {
+        flash(data.test, "danger")
+        }
+      });
+      return false;
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+  <script src="${url_of('mapy_api_suggestions.js')}"></script>
+---
+question: |
+  Identifikační vlastníka nemovitosti se sídlem spolku
+fields:
+  - Typ osoby: Spolek.sidlo.vlastnik[i].forma
+    input type: radio
+    choices:
+      - Právnická osoba: PO
+      - Fyzická osoba: FO
+  - Jméno a příjmení: Spolek.sidlo.vlastnik[i].name.text
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: FO
+  - Trvalé bydliště: Spolek.sidlo.vlastnik[i].address
+    css class: addressAutocomplete
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: FO
+  - Datum narození: Spolek.sidlo.vlastnik[i].birthday
+    datatype: date
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: FO
+  - IČO: Spolek.sidlo.vlastnik[i].ic
+    datatype: integer
+    minlength: 8
+    maxlength: 8
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: PO
+    hint: 12345678
+    note: |
+      <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
+  - Název organizace: Spolek.sidlo.vlastnik[i].name.text
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: PO
+  - Sídlo: Spolek.sidlo.vlastnik[i].address
+    css class: addressAutocomplete
+    hint: Sídlo
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: PO
+  - note: |
+      **Zástupce společnosti**
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: PO
+  - Vaše jméno: Spolek.sidlo.vlastnik[i].zastupceName
+    required: False
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: PO
+  - Vaše pozice v organizaci: Spolek.sidlo.vlastnik[i].zastupceFunkce
+    required: False
+    show if:
+      variable: Spolek.sidlo.vlastnik[i].forma
+      is: PO
+css: |
+  <link rel="stylesheet" href="${url_of('autocomplete.css')}">
+script: |
+  <script type="application/javascript" charset="utf-8">
+    $("#doplnit").click(function(){
+      action_call('doplnUdaje', {ico: val('Spolek.sidlo.vlastnik[i].ic')}, function(data){
+        if (typeof data.test.firma !== 'undefined') {
+        setField("Spolek.sidlo.vlastnik[i].name.text", data.test.firma);
+        setField("Spolek.sidlo.vlastnik[i].ic", data.test.ico);
+        setField("Spolek.sidlo.vlastnik[i].address", data.test.sidlo);
         } else if (typeof data.test == 'object') {
           action_perform('vyberFirmy')
         } else {

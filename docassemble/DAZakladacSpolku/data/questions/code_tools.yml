@@ -38,7 +38,30 @@ code: |
     Spolek.zalozeni.navrhovatel.there_are_any = True
     while count <= Spolek.zalozeni.navrhovatel.target_number:
       Spolek.zalozeni.navrhovatel.appendObject()
-      Spolek.zalozeni.navrhovatel[-1].label = 'zakládajícího člena'
       Spolek.zalozeni.navrhovatel[-1].cislo = count
       count = count + 1
     Spolek.zalozeni.navrhovatel.there_is_another = False
+---
+code: |
+  if Spolek.sidlo.vlastnik.vice == False:
+    Spolek.sidlo.vlastnik.target_number = 1
+    vlastnik = "Vlastník"
+  else:
+    vlastnik = "Spoluvlastníci"
+---
+code: |
+  if Spolek.sidlo.vlastnik.vice == False:
+    Spolek.sidlo.vlastnik[i].label = 'vlastníka nemovitosti'
+  else:
+    Spolek.sidlo.vlastnik[i].label = 'spoluvlastníka nemovitosti'
+---
+code: |
+  count = len(Spolek.sidlo.vlastnik)
+  Spolek.sidlo.vlastnik.there_are_any = True
+  if len(Spolek.sidlo.vlastnik) < Spolek.sidlo.vlastnik.target_number:
+    while count <= Spolek.sidlo.vlastnik.target_number:
+      Spolek.sidlo.vlastnik.appendObject()
+      Spolek.sidlo.vlastnik[-1].label = 'vlastníka nemovitosti'
+      Spolek.sidlo.vlastnik[-1].cislo = count
+      count = count + 1
+  Spolek.sidlo.vlastnik.there_is_another = False
