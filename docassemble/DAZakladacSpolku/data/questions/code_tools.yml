@@ -26,7 +26,6 @@ code: |
 ---
 code: |
   count = len(Spolek.statutar.clen)
-  Spolek.statutar.clen.there_are_any = True
   if len(Spolek.statutar.clen) < Spolek.statutar.clen.target_number:
     while count <= Spolek.statutar.clen.target_number:
       Spolek.statutar.clen.appendObject()
@@ -48,7 +47,6 @@ code: |
 code: |
   count = len(Spolek.zalozeni.navrhovatel)
   if Spolek.statutar.clen.there_is_another == False and len(Spolek.zalozeni.navrhovatel) < Spolek.zalozeni.navrhovatel.target_number:
-    Spolek.zalozeni.navrhovatel.there_are_any = True
     while count <= Spolek.zalozeni.navrhovatel.target_number:
       Spolek.zalozeni.navrhovatel.appendObject()
       Spolek.zalozeni.navrhovatel[-1].cislo = count
@@ -71,7 +69,6 @@ code: |
 ---
 code: |
   count = len(Spolek.sidlo.vlastnik)
-  Spolek.sidlo.vlastnik.there_are_any = True
   if len(Spolek.sidlo.vlastnik) < Spolek.sidlo.vlastnik.target_number:
     while count <= Spolek.sidlo.vlastnik.target_number:
       Spolek.sidlo.vlastnik.appendObject()
