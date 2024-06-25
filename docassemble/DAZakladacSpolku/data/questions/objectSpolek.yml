@@ -7,13 +7,13 @@ objects:
   - Spolek.nejvyssiOrgan: DAObject
   - Spolek.zivnost: DAObject
   - Spolek.statutar: DAObject
-  - Spolek.statutar.clen: DAList.using(object_type=Thing, label="člena statutárního orgánu", there_are_any=True)
+  - Spolek.statutar.clen: DAList.using(object_type=Thing, label="člena statutárního orgánu", ask_number=True)
   - Spolek.clenstvi: DAObject
   - Spolek.zalozeni: DAObject
-  - Spolek.zalozeni.navrhovatel: DAList.using(object_type=Thing, label="navrhovatel zápisu spolku", there_are_any=True)
+  - Spolek.zalozeni.navrhovatel: DAList.using(object_type=Thing, label="navrhovatel zápisu spolku", ask_number=True)
   - Spolek.kontrolniKomise: DAObject
   - Spolek.rozhodciKomise: DAObject
   - Spolek.rada: DAObject
   - Spolek.sidlo: DAObject
-  - Spolek.sidlo.vlastnik: DAList.using(object_type=Thing, label="vlastník sídla", there_are_any=True)
+  - Spolek.sidlo.vlastnik: DAList.using(object_type=Thing, label="vlastník sídla", ask_number=True)
   - Spolek.zakladatele: DAList.using(object_type=Thing, label="zakladatel spolku", ask_number=True)
