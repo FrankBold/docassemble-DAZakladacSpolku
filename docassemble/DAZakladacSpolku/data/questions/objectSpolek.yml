@@ -16,3 +16,4 @@ objects:
   - Spolek.rada: DAObject
   - Spolek.sidlo: DAObject
   - Spolek.sidlo.vlastnik: DAList.using(object_type=Thing, label="vlastník sídla")
+  - Spolek.zakladatele: DAList.using(object_type=Thing, label="zakladatel spolku")

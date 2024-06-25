@@ -13,11 +13,14 @@ on change:
 mandatory: True
 code: |
   uvod
+  Spolek.zakladatele
   stanovy
   souhlas
+  ustavujiciSchuze
   vystup
 ---
 sections: 
+  - zakladatele: Zakladatelé spolků
   - stanovy: Stanovy
     subsections:
       - identifikace: Identifikace spolku
@@ -39,6 +42,16 @@ subquestion: |
 
   Pro jednotlivé varianty vycházíme z parametrů, které jsme zadali v předchozím kroku. 
 continue button field: uvod
+---
+sets:
+  - Spolek.zakladatele.target_number
+section: zakladatele
+question: |
+  Zakladatelé spolku
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,zakladatele)")
+continue button field: zakladatele
 ---
 sets:
   - Spolek.name.text

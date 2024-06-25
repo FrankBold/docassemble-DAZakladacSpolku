@@ -8,6 +8,18 @@ code: |
 code: |
   zivnostSeznam = string_2_pole(Spolek.zivnost.cinnosti)
 ---
+# Zakladatelé spolku
+code: |
+  count = len(Spolek.zakladatele)
+  Spolek.zakladatele.there_are_any = True
+  if len(Spolek.zakladatele) < Spolek.zakladatele.target_number:
+    while count <= Spolek.zakladatele.target_number:
+      Spolek.zakladatele.appendObject()
+      Spolek.zakladatele[-1].cislo = count
+      count = count + 1
+  Spolek.zakladatele.there_is_another = False
+---
+# Statutární orgán
 code: |
   if Spolek.statutar.druh == 'predseda':
     Spolek.statutar.clen.target_number = 1
@@ -26,6 +38,7 @@ code: |
       count = count + 1
   Spolek.statutar.clen.there_is_another = False
 ---
+# Navrhovatel zápisu spolku
 code: |
   if Spolek.zalozeni.typ == 'schuze':
     Spolek.zalozeni.navrhovatel.target_number = 1
@@ -42,6 +55,7 @@ code: |
       count = count + 1
     Spolek.zalozeni.navrhovatel.there_is_another = False
 ---
+# Vlastník sídla spolku
 code: |
   if Spolek.sidlo.vlastnik.vice == False:
     Spolek.sidlo.vlastnik.target_number = 1
