@@ -3,9 +3,11 @@ modules:
 ---
 include:
   - objectSpolek.yml
+  - code_tools.yml
 ---
 mandatory: True
 code: |
+  import json
   if "spolek_id" in url_args:
 
     Spolek.row_id = url_args["spolek_id"]

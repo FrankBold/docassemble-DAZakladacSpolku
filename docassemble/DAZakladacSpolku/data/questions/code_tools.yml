@@ -1,0 +1,75 @@
+code: |
+  ucelySeznam = string_2_pole(Spolek.ucel)
+---
+code: |
+  #pravomociSeznam = string_2_pole(Spolek.nejvyssiOrgan.pravomoc)
+  pravomociSeznam = string_2_pole("asdasdadsasdasd")
+---
+code: |
+  zivnostSeznam = string_2_pole(Spolek.zivnost.cinnosti)
+---
+# Zakladatelé spolku
+code: |
+  count = len(Spolek.zakladatele)
+  if len(Spolek.zakladatele) < Spolek.zakladatele.target_number:
+    while count <= Spolek.zakladatele.target_number:
+      Spolek.zakladatele.appendObject()
+      Spolek.zakladatele[-1].cislo = count
+      count = count + 1
+  Spolek.zakladatele.there_is_another = False
+  zakladateleDone = True
+---
+# Statutární orgán
+code: |
+  if Spolek.statutar.druh == 'predseda':
+    Spolek.statutar.clen.target_number = 1
+---
+code: |
+  count = len(Spolek.statutar.clen)
+  if len(Spolek.statutar.clen) < Spolek.statutar.clen.target_number:
+    while count <= Spolek.statutar.clen.target_number:
+      Spolek.statutar.clen.appendObject()
+      if Spolek.statutar.druh == 'predseda':
+        Spolek.statutar.clen[-1].label = 'předsedy'
+      else:
+        Spolek.statutar.clen[-1].label = 'člena výboru'
+      Spolek.statutar.clen[-1].cislo = count
+      count = count + 1
+---
+# Navrhovatel zápisu spolku
+code: |
+  if Spolek.zalozeni.typ == 'schuze':
+    Spolek.zalozeni.navrhovatel.target_number = 1
+  else:
+    Spolek.zalozeni.navrhovatel = Spolek.zakladatele
+---
+code: |
+  count = len(Spolek.zalozeni.navrhovatel)
+  if Spolek.statutar.clen.there_is_another == False and len(Spolek.zalozeni.navrhovatel) < Spolek.zalozeni.navrhovatel.target_number:
+    while count <= Spolek.zalozeni.navrhovatel.target_number:
+      Spolek.zalozeni.navrhovatel.appendObject()
+      Spolek.zalozeni.navrhovatel[-1].cislo = count
+      count = count + 1
+---
+# Vlastník sídla spolku
+code: |
+  if Spolek.sidlo.vlastnik.vice == False:
+    Spolek.sidlo.vlastnik.target_number = 1
+    vlastnik = "Vlastník"
+  else:
+    vlastnik = "Spoluvlastníci"
+---
+code: |
+  if Spolek.sidlo.vlastnik.vice == False:
+    Spolek.sidlo.vlastnik[i].label = 'vlastníka nemovitosti'
+  else:
+    Spolek.sidlo.vlastnik[i].label = 'spoluvlastníka nemovitosti'
+---
+code: |
+  count = len(Spolek.sidlo.vlastnik)
+  if len(Spolek.sidlo.vlastnik) < Spolek.sidlo.vlastnik.target_number:
+    while count <= Spolek.sidlo.vlastnik.target_number:
+      Spolek.sidlo.vlastnik.appendObject()
+      Spolek.sidlo.vlastnik[-1].label = 'vlastníka nemovitosti'
+      Spolek.sidlo.vlastnik[-1].cislo = count
+      count = count + 1

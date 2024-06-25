@@ -4,24 +4,28 @@ include:
 features:
   navigation: True
 ---
+on change:
+  Stanovy.statutar.druh: |
+    Stanovy.statutar.clen.reset_gathered(mark_incomplete=True)
+  Stanovy.zalozeni.typ: |
+    Stanovy.zalozeni.zakladatel.reset_gathered(mark_incomplete=True)
+---
 mandatory: True
 code: |
+  hromadne = True
   uvod
-  identifikace
-  cinnosti
-  nejvyssiOrgan
-  statutar
-  clenstvi
-  zalozeni
-  organy
-  sidlo
+  zakladateleDone
+  stanovy
+  souhlas
   vystup
 ---
 sections: 
+  - zakladatele: Zakladatelé spolku
   - stanovy: Stanovy
     subsections:
       - identifikace: Identifikace spolku
       - cinnosti: Činnost spolku
+      - zalozeni: Způsob založení spolku
       - nejvyssiOrgan: Nejvyšší orgán spolku
       - statutar: Statutární orgán spolku
   - zapis: Zápis z ustavující schůze
@@ -40,7 +44,17 @@ subquestion: |
 continue button field: uvod
 ---
 sets:
-  - Spolek.name
+  - Spolek.zakladatele.target_number
+section: zakladatele
+question: |
+  Zakladatelé spolku
+fields:
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,zakladatele)")
+continue button field: zakladatele
+---
+sets:
+  - Spolek.name.text
   - Spolek.address
 section: identifikace
 question: |
@@ -181,4 +195,24 @@ event: vystup
 question: |
   Hotovo, data odeslána
 subquestion: |
-    ${ action_button_html(url_stanovy["url"], label="Stáhnout soubor", color="primary", size="md") }
+  ${ action_button_html(url_stanovy["url"], label="Stáhnout soubor", color="primary", size="md") }
+---
+attachment:
+  name: Stanovy spolku
+  filename: Stanovy_spolku
+  variable name: stanovy
+  docx template file: Stanovy.docx
+  update references: True
+  valid formats:
+    - docx
+---
+attachment:
+  name: Souhlas s umístěním sídla spoklku
+  filename: Souhlas
+  variable name: souhlas
+  docx template file: SouhlasSidlo.docx
+  valid formats:
+    - docx
+---
+include:
+  - code_tools.yml

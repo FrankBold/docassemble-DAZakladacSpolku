@@ -53,17 +53,27 @@ def load_spolek_data(id: int):
         return False
 
 def flatten_json(data, prefix=''):
-    result = {}
-    for key, value in data.items():
-        if key in ("_class", "instanceName"):  # Skip these keys
-            continue
+    result = {} 
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if key in ("_class", "instanceName", "ask_number","ask_object_type","auto_gather","complete_attribute","minimum_number","object_type","object_type_parameters", "there_are_any"):  # Skip these keys
+                continue
 
-        new_key = f"{prefix}.{key}" if prefix else key
+            new_key = f"{prefix}.{key}" if prefix else key
 
-        if isinstance(value, dict):
-            result.update(flatten_json(value, new_key))  # Recurse for nested dicts
-        else:
-            result[new_key] = value
+            if isinstance(value, dict) or isinstance(value, list):
+                result.update(flatten_json(value, new_key))  # Recurse for nested dicts or lists
+            else:
+                result[new_key.replace(".elements","")] = value
+
+    elif isinstance(data, list):
+        for index, value in enumerate(data):
+            new_key = f"{prefix}[{index}]"
+
+            if isinstance(value, dict) or isinstance(value, list):
+                result.update(flatten_json(value, new_key))  # Recurse for nested dicts or lists
+            else:
+                result[new_key.replace(".elements","")] = value
 
     return result
 
@@ -78,3 +88,7 @@ def contains_spolek(x):
   else:
     validation_error('Název spolku <strong>musí</strong> obsahovat "z. s.", "spolek", nebo "zapsaný spolek"')
   return
+
+def string_2_pole(x):
+  x = x.split('\r\n')
+  return x

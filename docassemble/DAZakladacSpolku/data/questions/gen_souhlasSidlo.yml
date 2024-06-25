@@ -1,0 +1,43 @@
+modules:
+  - .interviewTools
+---
+include:
+  - objectSpolek.yml
+  - code_tools.yml
+---
+objects:
+  - seznamOsob: DAList
+---
+mandatory: True
+code: |
+  import json
+  hromadne = True
+  label = "statutárního orgánu"
+  if "spolek_id" in url_args:
+
+    Spolek.row_id = url_args["spolek_id"]
+    spolek_raw = load_spolek_data(Spolek.row_id)
+
+    for key, value in spolek_raw.items():
+      define(f"Spolek.{key}", value)
+    
+    json_response({"url":souhlas.url_for(temporary=True)})
+
+  else:
+    json_response("Error")
+---
+attachment:
+  name: Souhlas s umístěním sídla spolku
+  filename: souhlas_${Spolek.sidlo.vlastnik[i].name.text}
+  variable name: Spolek.sidlo.vlastnik[i].prohlaseni
+  docx template file: SouhlasSidlo.docx
+  valid formats:
+    - docx
+---
+attachment:
+  name: Souhlas s umístěním sídla spoklku
+  filename: Souhlas
+  variable name: souhlas
+  docx template file: SouhlasSidlo.docx
+  valid formats:
+    - docx
