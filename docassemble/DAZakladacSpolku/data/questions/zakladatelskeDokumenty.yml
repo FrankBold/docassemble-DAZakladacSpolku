@@ -12,11 +12,10 @@ on change:
 ---
 mandatory: True
 code: |
+  hromadne = True
   uvod
-  Spolek.zakladatele
   stanovy
   souhlas
-  ustavujiciSchuze
   vystup
 ---
 sections: 
