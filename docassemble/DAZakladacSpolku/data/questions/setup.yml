@@ -33,6 +33,9 @@ code: |
 
   loading_done = True
 
+  if len(Spolek.zakladatele) == 0:
+    Spolek.zakladatele.appendObject()
+
   if len(Spolek.statutar.clen) == 0:
     Spolek.statutar.clen.appendObject()
   
