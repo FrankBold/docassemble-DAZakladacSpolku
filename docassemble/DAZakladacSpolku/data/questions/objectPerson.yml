@@ -1,5 +1,5 @@
 question: |
-  Identifikační údaje ${i}. zakladatele spolku
+  Identifikační údaje ${i+1}. zakladatele spolku
 subquestion: |
   Údaje níže potřebuje pro předvyplnění potřebných dokumentů. 
 
