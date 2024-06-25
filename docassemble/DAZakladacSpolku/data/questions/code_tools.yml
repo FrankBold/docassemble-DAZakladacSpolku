@@ -35,7 +35,6 @@ code: |
         Spolek.statutar.clen[-1].label = 'člena výboru'
       Spolek.statutar.clen[-1].cislo = count
       count = count + 1
-  Spolek.statutar.clen.there_is_another = False
 ---
 # Navrhovatel zápisu spolku
 code: |
@@ -51,7 +50,6 @@ code: |
       Spolek.zalozeni.navrhovatel.appendObject()
       Spolek.zalozeni.navrhovatel[-1].cislo = count
       count = count + 1
-    Spolek.zalozeni.navrhovatel.there_is_another = False
 ---
 # Vlastník sídla spolku
 code: |
@@ -75,4 +73,3 @@ code: |
       Spolek.sidlo.vlastnik[-1].label = 'vlastníka nemovitosti'
       Spolek.sidlo.vlastnik[-1].cislo = count
       count = count + 1
-  Spolek.sidlo.vlastnik.there_is_another = False
