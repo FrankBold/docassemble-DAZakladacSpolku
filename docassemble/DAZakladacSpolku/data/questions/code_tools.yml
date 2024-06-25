@@ -16,7 +16,6 @@ code: |
 ---
 code: |
   count = len(Spolek.zakladatele)
-  Spolek.zakladatele.there_are_any = True
   if len(Spolek.zakladatele) < Spolek.zakladatele.target_number:
     while count <= Spolek.zakladatele.target_number:
       Spolek.zakladatele.appendObject()
