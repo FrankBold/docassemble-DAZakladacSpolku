@@ -5,10 +5,10 @@ features:
   navigation: True
 ---
 on change:
-  - Stanovy.statutar.druh: |
-      Stanovy.statutar.clen.reset_gathered(mark_incomplete=True)
-  - Stanovy.zalozeni.typ: |
-      Stanovy.zalozeni.zakladatel.reset_gathered(mark_incomplete=True)
+  Stanovy.statutar.druh: |
+    Stanovy.statutar.clen.reset_gathered(mark_incomplete=True)
+  Stanovy.zalozeni.typ: |
+    Stanovy.zalozeni.zakladatel.reset_gathered(mark_incomplete=True)
 ---
 mandatory: True
 code: |
