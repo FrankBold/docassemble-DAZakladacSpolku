@@ -13,14 +13,14 @@ on change:
 mandatory: True
 code: |
   uvod
-  Spolek.zakladatele
+  Spolek.zakladatele.there_is_another
   stanovy
   souhlas
   ustavujiciSchuze
   vystup
 ---
 sections: 
-  - zakladatele: Zakladatelé spolků
+  - zakladatele: Zakladatelé spolku
   - stanovy: Stanovy
     subsections:
       - identifikace: Identifikace spolku
