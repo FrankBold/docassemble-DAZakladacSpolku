@@ -92,7 +92,7 @@ fields:
     datatype: object
     disable others: True
     choices:
-      - Spolek.navrhovatele
+      - Spolek.zakladatele
     exclude: |
       Spolek.statutar.clen
   - Typ osoby: Spolek.statutar.clen[i].forma
@@ -178,7 +178,7 @@ fields:
     datatype: object
     disable others: True
     choices:
-      - Spolek.navrhovatele
+      - Spolek.zakladatele
     exclude: |
       Spolek.sidlo.vlastnik
   - Typ osoby: Spolek.sidlo.vlastnik[i].forma
