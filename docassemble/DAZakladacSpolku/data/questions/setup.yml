@@ -32,15 +32,6 @@ code: |
   save_spolek_data(all_variables(make_copy=True))
 
   loading_done = True
-
-  if len(Spolek.zakladatele) == 0:
-    Spolek.zakladatele.appendObject()
-
-  if len(Spolek.statutar.clen) == 0:
-    Spolek.statutar.clen.appendObject()
-  
-  if len(Spolek.zalozeni.navrhovatel) == 0:
-    Spolek.zalozeni.navrhovatel.appendObject()
 ---
 initial: True
 code: |
