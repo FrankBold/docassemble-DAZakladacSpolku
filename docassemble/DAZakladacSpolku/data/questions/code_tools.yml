@@ -9,6 +9,13 @@ code: |
   zivnostSeznam = string_2_pole(Spolek.zivnost.cinnosti)
 ---
 # Zakladatelé spolku
+---
+code: |
+  if len(Spolek.zakladatele) == Spolek.zakladatele.target_number:
+    zakladateleDone = True
+  else:
+    Spolek.zakladatele.reset_gathered(mark_incomplete=True)
+---
 code: |
   count = len(Spolek.zakladatele)
   Spolek.zakladatele.there_are_any = True
