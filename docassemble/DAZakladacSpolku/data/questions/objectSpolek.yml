@@ -15,4 +15,4 @@ objects:
   - Spolek.rozhodciKomise: DAObject
   - Spolek.rada: DAObject
   - Spolek.sidlo: DAObject
-  - Spolek.sidlo.vlastnik: DAList.using(object_type=Thing, label="navrhovatel zápisu spolku")
+  - Spolek.sidlo.vlastnik: DAList.using(object_type=Thing, label="vlastník sídla")
