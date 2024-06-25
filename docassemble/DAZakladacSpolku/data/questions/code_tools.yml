@@ -9,11 +9,6 @@ code: |
   zivnostSeznam = string_2_pole(Spolek.zivnost.cinnosti)
 ---
 # Zakladatelé spolku
----
-code: |
-  if len(Spolek.zakladatele) == Spolek.zakladatele.target_number:
-    zakladateleDone = True
----
 code: |
   count = len(Spolek.zakladatele)
   if len(Spolek.zakladatele) < Spolek.zakladatele.target_number:
@@ -22,6 +17,7 @@ code: |
       Spolek.zakladatele[-1].cislo = count
       count = count + 1
   Spolek.zakladatele.there_is_another = False
+  zakladateleDone = True
 ---
 # Statutární orgán
 code: |
