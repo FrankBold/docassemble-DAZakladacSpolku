@@ -257,8 +257,6 @@ script: |
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
   <script src="${url_of('mapy_api_suggestions.js')}"></script>
 ---
-need:
-  - Spolek.zalozeni.pocetZakladatelu
 question: |
   Info zakladatele
 fields:
@@ -266,9 +264,7 @@ fields:
     datatype: object
     disable others: True
     choices:
-      - Spolek.statutar.clen[i]
-    exclude: |
-      Spolek.zalozeni.navrhovatel
+      - Spolek.zakladatele
   - Jméno a příjmení: Spolek.zalozeni.navrhovatel[i].name.text
   - Bydliště: Spolek.zalozeni.navrhovatel[i].address
   - Datum narození: Spolek.zalozeni.navrhovatel[i].birthday

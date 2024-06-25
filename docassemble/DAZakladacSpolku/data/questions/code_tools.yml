@@ -42,7 +42,7 @@ code: |
   if Spolek.zalozeni.typ == 'schuze':
     Spolek.zalozeni.navrhovatel.target_number = 1
   else:
-    Spolek.zalozeni.navrhovatel.target_number = Spolek.zalozeni.pocetZakladatelu
+    Spolek.zalozeni.navrhovatel = Spolek.zakladatele
 ---
 code: |
   count = len(Spolek.zalozeni.navrhovatel)
