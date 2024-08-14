@@ -90,5 +90,8 @@ inputElems.forEach(inputElem => {
         });
 
         inputElem.value = `${origData.name}, ${origData.zip} ${municipality}`;
+        action_call('WSGtoJSTK', {lat: origData.position.lat, lot: origData.position.lot}, function(data){
+            console.log(data.link)
+          });
     });
 });

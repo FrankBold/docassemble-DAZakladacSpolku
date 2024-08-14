@@ -193,6 +193,20 @@ script: |
   <script src="${url_of('mapy_api_suggestions.js')}"></script>
 continue button field: sidlo
 ---
+event: WSGtoJSTK
+code: |
+  from pyproj import Transformer
+
+  # WSG z našeptávače https://api.mapy.cz/v1/docs/geocode/
+
+  # Definice transformace z WGS84 do S-JTSK
+  transformer = Transformer.from_crs("epsg:4326", "epsg:5514", always_xy=True)
+  
+  # Transformace zadaných souřadnic
+  x, y = transformer.transform(action_argument('lon'), action_argument('lat'))
+  
+  json_response(dict(link=f"https://nahlizenidokn.cuzk.cz/MapaIdentifikace.aspx?l=KN&x=-{round(x)}&y=-{round(y)}"))
+---
 event: overit
 code: |
   json_response("Nic zatim")
