@@ -177,12 +177,21 @@ sets:
   - Spolek.sidlo.typ
   - Spolek.sidlo.vlastnik.vice
   - Spolek.sidlo.vlastnik.pocet
+  - Spolek.sidlo.adresa
 section: sidlo
 question: |
   Sídlo spolku a souhlas
 fields: 
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,sidlo)")
+  - Celá data: mapyData
+    input type: area
+css: |
+  <link rel="stylesheet" href="${url_of('autocomplete.css')}">
+script: |
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+  <script src="${url_of('mapy_api_suggestions.js')}"></script>
+continue button field: sidlo
 continue button field: sidlo
 ---
 event: overit

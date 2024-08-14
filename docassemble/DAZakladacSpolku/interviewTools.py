@@ -6,7 +6,7 @@ from docassemble.base.util import validation_error
 from docassemble.DATools.nocodb import list_nocodb_record, update_record
 
 def get_questions_from_nocodb(table_id: str, filter: str= ""):
-    data = list_nocodb_record(table_id=table_id, fields="label,field,datatype,input type,choices,show if,help,hint,validate,note", filter=filter)
+    data = list_nocodb_record(table_id=table_id, fields="label,field,datatype,input type,choices,show if,help,hint,validate,note,css class", filter=filter)
 
     updated_data = []
     for entry in data:
