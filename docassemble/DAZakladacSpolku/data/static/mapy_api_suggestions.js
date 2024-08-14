@@ -92,8 +92,8 @@ inputElems.forEach(inputElem => {
         inputElem.value = `${origData.name}, ${origData.zip} ${municipality}`;
 
         action_call('WSGtoJSTK', {lat: origData.position.lat, lon: origData.position.lon}, function(data){
-            console.log(data.link)
-            $("#katastrLink").html("Podle zadané adresy by mělo jít o <a href='"+data.link+"'>tento záznam v katastru nemovitostí</a>.")
+            console.log(data.link);
+            $("#katastrLink").html("Podle zadané adresy by mělo jít o <a href='"+data.link+"'>tento záznam v katastru nemovitostí</a>.");
           });
     });
 });

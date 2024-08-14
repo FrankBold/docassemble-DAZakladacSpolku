@@ -186,6 +186,14 @@ fields:
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,sidlo)")
   - html: |
       <span id="katastrLink"></span>
+  - Číslo popisné: Spolek.sidlo.katastr.cp
+  - Parcelní číslo: Spolek.sidlo.katastr.parc
+    datatype: integer
+  - List vlastníctví: Spolek.sidlo.katastr.lv
+    datatype: integer
+  - Katastrální území: Spolek.sidlo.katastr.ku
+  - Katastrální úřad: Spolek.sidlo.katastr.urad
+  - Katastrální pracoviště: Spolek.sidlo.katastr.pracoviste
 css: |
   <link rel="stylesheet" href="${url_of('autocomplete.css')}">
 script: |
