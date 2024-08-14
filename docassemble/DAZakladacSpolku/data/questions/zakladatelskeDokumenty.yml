@@ -184,8 +184,8 @@ question: |
 fields: 
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,sidlo)")
-  - Celá data: mapyData
-    input type: area
+  - html: |
+      <span id="katastrLink"></span>
 css: |
   <link rel="stylesheet" href="${url_of('autocomplete.css')}">
 script: |
@@ -203,9 +203,9 @@ code: |
   transformer = Transformer.from_crs("epsg:4326", "epsg:5514", always_xy=True)
   
   # Transformace zadaných souřadnic
-  x, y = transformer.transform(action_argument('lon'), action_argument('lat'))
+  x, y = transformer.transform(float(action_argument('lon')), float(action_argument('lat')))
   
-  json_response(dict(link=f"https://nahlizenidokn.cuzk.cz/MapaIdentifikace.aspx?l=KN&x=-{round(x)}&y=-{round(y)}"))
+  json_response(dict(link=f"https://nahlizenidokn.cuzk.cz/MapaIdentifikace.aspx?l=KN&x={round(x)}&y={round(y)}"))
 ---
 event: overit
 code: |
