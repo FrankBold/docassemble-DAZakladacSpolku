@@ -192,7 +192,6 @@ script: |
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
   <script src="${url_of('mapy_api_suggestions.js')}"></script>
 continue button field: sidlo
-continue button field: sidlo
 ---
 event: overit
 code: |
