@@ -1,5 +1,5 @@
 include:
-  - zakladatelskoDokumenty.yml
+  - zakladatelskeDokumenty.yml
 ---
 mandatory: True
 code: |

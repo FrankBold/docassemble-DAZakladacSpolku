@@ -22,18 +22,31 @@ features:
 ---
 mandatory: True
 code: |
-  Spolek.row_id = 3
+  if "spolek_id" in url_args:
+    try:
+      Spolek.row_id = url_args["spolek_id"]
 
-  spolek_raw = load_spolek_data(Spolek.row_id)
+      spolek_raw = load_spolek_data(Spolek.row_id)
 
-  for key, value in spolek_raw.items():
-    define(f"Spolek.{key}", value)
+      for key, value in spolek_raw.items():
+        define(f"Spolek.{key}", value)
 
-  save_spolek_data(all_variables(make_copy=True))
+      save_spolek_data(all_variables(make_copy=True))
 
-  loading_done = True
+      loading_done = True
+    except:
+      problem
+      
+  else:
+    problem
 ---
 initial: True
 code: |
   if loading_done:
     save_spolek_data(all_variables(make_copy=True))
+---
+event: problem
+question: |
+  Chyba při načtení spolku
+subquestion: |
+  Nepodařilo se nám načíst dat o Vašem spolku.

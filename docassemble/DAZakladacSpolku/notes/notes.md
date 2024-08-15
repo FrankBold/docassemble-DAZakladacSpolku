@@ -22,3 +22,6 @@ attachment:
   docx template file: SouhlasSidlo.docx
   valid formats:
     - docx
+## To-Do
+
+- [] Zabezpečit načítání docassamble interview, aby proběhla kontrola, že daný spolek načítá správný uživatel.
