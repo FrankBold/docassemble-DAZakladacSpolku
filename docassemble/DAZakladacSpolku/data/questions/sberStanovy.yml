@@ -1,0 +1,25 @@
+include:
+  - zakladatelskeDokumenty.yml
+---
+mandatory: True
+code: |
+  stanovy
+  stanovyDone
+---
+mandatory: True
+attachment:
+  name: Stanovy spolku
+  filename: Stanovy_spolku
+  variable name: stanovy
+  docx template file: Stanovy.docx
+  update references: True
+  valid formats:
+    - docx
+---
+event: stanovyDone
+question: |
+  Hotovo
+subquestion: |
+  Máme vše potřebné pro vytvoření stanov.
+
+  ${stanovy}
