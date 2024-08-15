@@ -22,4 +22,4 @@ question: |
 subquestion: |
   Máme vše potřebné pro vytvoření stanov.
 
-  ${url_of(stanovy) }
+  ${stanovy}
