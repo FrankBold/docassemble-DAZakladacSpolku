@@ -93,7 +93,7 @@ inputElems.forEach(inputElem => {
 
         action_call('WSGtoJSTK', {lat: origData.position.lat, lon: origData.position.lon}, function(data){
             console.log(data.link);
-            $("#katastrLink").html("Podle zadané adresy by mělo jít o <a href='"+data.link+"'>tento záznam v katastru nemovitostí</a>.");
+            $("#katastrLink").html("Podle zadané adresy by mělo jít o <a href='"+data.link+"' target='_blank'>tento záznam v katastru nemovitostí</a>.");
           });
     });
 });

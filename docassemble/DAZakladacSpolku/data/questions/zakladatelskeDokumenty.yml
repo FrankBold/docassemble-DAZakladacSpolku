@@ -14,11 +14,6 @@ on change:
 mandatory: True
 code: |
   hromadne = True
-  uvod
-  zakladateleDone
-  stanovy
-  souhlas
-  vystup
 ---
 sections: 
   - zakladatele: Zakladatelé spolku
@@ -29,7 +24,6 @@ sections:
       - zalozeni: Způsob založení spolku
       - nejvyssiOrgan: Nejvyšší orgán spolku
       - statutar: Statutární orgán spolku
-  - zapis: Zápis z ustavující schůze
   - souhlasy: Souhlas členů orgánů
   - sidlo: Souhlas vlastníka nemovitosti
   - zivnost: Živnostenské oprávnění
@@ -41,7 +35,17 @@ question: |
 subquestion: |
   V této části připravíme veškeré dokumenty, které potřebujete k založení spolku.
 
-  Pro jednotlivé varianty vycházíme z parametrů, které jsme zadali v předchozím kroku. 
+  % if Spolek.zalozeni.typ == "stanovy":
+  Spolek zakládáte prostým přijetím stanov. V tomto formuláři tak rovnou připravíme všechny potřebné dokumenty.
+
+  Formulář můžete kdykoli opustit a vrátit se k vyplňování později. Stejně jako přeskakovat jednotlivé kroky.
+  % else:
+  Budete konat ustavující schůzi spolku. Budeme tedy postupovat následovně:
+
+  1. Vytvoříme stanovy, které budete schvalovat na ustavující schůzi.
+  2. Provedeme vás ustavující schůzi a vytvoříme z ní zápis.
+  3. Připravíme zbytek potřebných dokumentů
+  % endif
 continue button field: uvod
 ---
 sets:
@@ -218,32 +222,6 @@ code: |
 event: overit
 code: |
   json_response("Nic zatim")
----
-code: |
-  url_stanovy = get_document_url(row_id=Spolek.row_id, document="stanovy")
----
-event: vystup
-question: |
-  Hotovo, data odeslána
-subquestion: |
-  ${ action_button_html(url_stanovy["url"], label="Stáhnout soubor", color="primary", size="md") }
----
-attachment:
-  name: Stanovy spolku
-  filename: Stanovy_spolku
-  variable name: stanovy
-  docx template file: Stanovy.docx
-  update references: True
-  valid formats:
-    - docx
----
-attachment:
-  name: Souhlas s umístěním sídla spoklku
-  filename: Souhlas
-  variable name: souhlas
-  docx template file: SouhlasSidlo.docx
-  valid formats:
-    - docx
 ---
 include:
   - code_tools.yml
