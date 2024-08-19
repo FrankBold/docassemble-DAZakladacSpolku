@@ -1,0 +1,47 @@
+include:
+  - zakladatelskeDokumenty.yml
+---
+sections:
+  - uvod: Úvod ustavující schůze
+progressive: False
+---
+mandatory: True
+code: |
+  the_task
+  if the_task.ready():
+    zapis
+  else:
+    waiting_screen
+  all_done
+---
+code: |
+  the_task = background_action("bg_task")
+---
+event: bg_task
+code: |
+  background_response(url_of(zapis))
+---
+event: waiting_screen
+question: |
+  Načítáme aktuální stav <div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+  </div>
+reload: 5
+---
+mandatory: True
+attachment:
+  name: Zápis z ustavujici schůze
+  filename: Zapis ustavujici schuze
+  variable name: zapis
+  docx template file: Schuze.docx
+  update references: True
+  valid formats:
+    - docx
+---
+event: all_done
+question: |
+  Máme vše potřebné
+subquestion: |
+  Máme všechny potřebné odpovědi. Nyní si můžete vygenerovat stanovy a pokračovat.
+  
+  ${zapis}
