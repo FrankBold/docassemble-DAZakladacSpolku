@@ -58,6 +58,9 @@ def flatten_json(data, prefix=''):
         for key, value in data.items():
             if key in ("_class", "instanceName", "ask_number","ask_object_type","auto_gather","complete_attribute","minimum_number","object_type","object_type_parameters", "there_are_any"):  # Skip these keys
                 continue
+            elif key == "important":
+                result[f"{prefix}.{key}" if prefix else key] = value
+                continue
 
             new_key = f"{prefix}.{key}" if prefix else key
 
