@@ -73,14 +73,3 @@ code: |
       Spolek.sidlo.vlastnik[-1].label = 'vlastníka nemovitosti'
       Spolek.sidlo.vlastnik[-1].cislo = count
       count = count + 1
----
-# Povinný program ustavujícíc schůze
-code: |
-  povinnyProgram = [["Úvodní slovo", True], ["Soupis listiny přítomných", False], ["Schválení stanov", True], ["Volba orgánů spolku", True], ["Pověření osoby k podání návrhu na zápis spolku", True]]
-  for polozka in povinnyProgram:
-    Spolek.schuze.program.appendObject()
-    Spolek.schuze.program[-1].important = dict(delete=False, edit=False)
-    Spolek.schuze.program[-1].name.text = polozka[0]
-    if polozka[1] == False:
-      Spolek.schuze.program[-1].jednomyslne = True
-  Spolek.schuze.program.there_is_another = False

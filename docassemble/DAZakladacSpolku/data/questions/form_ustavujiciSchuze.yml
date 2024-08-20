@@ -7,6 +7,17 @@ progressive: False
 ---
 mandatory: True
 code: |
+  povinnyProgram = [["Úvodní slovo", True], ["Soupis listiny přítomných", False], ["Schválení stanov", True], ["Volba orgánů spolku", True], ["Pověření osoby k podání návrhu na zápis spolku", True]]
+  for polozka in povinnyProgram:
+    Spolek.schuze.program.appendObject()
+    Spolek.schuze.program[-1].important = dict(delete=False, edit=False)
+    Spolek.schuze.program[-1].name.text = polozka[0]
+    if polozka[1] == False:
+      Spolek.schuze.program[-1].jednomyslne = True
+  Spolek.schuze.program.there_is_another = False
+---
+mandatory: True
+code: |
   the_task
   if the_task.ready():
     zapis
@@ -26,7 +37,7 @@ question: |
   Načítáme aktuální stav <div class="spinner-border text-primary" role="status">
   <span class="visually-hidden">Loading...</span>
   </div>
-reload: 5
+reload: 1
 ---
 mandatory: True
 attachment:
