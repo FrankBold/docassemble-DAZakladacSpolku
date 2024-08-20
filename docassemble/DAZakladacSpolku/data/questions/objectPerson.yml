@@ -258,7 +258,11 @@ script: |
   <script src="${url_of('mapy_api_suggestions.js')}"></script>
 ---
 question: |
-  Info zakladatele
+  Navrhovatel zápisu spolku
+subquestions: |
+  Kdo bude pověřen návrhem na podání návrhu na zápis spolku?
+
+  Jde pak o jediného člověka, který musí návrh opatřit ověřeným podpisem. Jinak by museli ověřeny podpis zajistit všichni zakládající členové.
 fields:
   - Někdo z členů: Spolek.zalozeni.navrhovatel[i]
     datatype: object
