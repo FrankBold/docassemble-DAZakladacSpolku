@@ -269,3 +269,18 @@ fields:
   - Bydliště: Spolek.zalozeni.navrhovatel[i].address
   - Datum narození: Spolek.zalozeni.navrhovatel[i].birthday
     datatype: date
+---
+reconsider: jmenaZakladatelu
+question: |
+  Určení předsedy schůze
+fields:
+  - Někdo z členů: Spolek.schuze.predseda
+    disable others: True
+    code: |
+      jmenaZakladatelu
+  - Jméno a příjmení: Spolek.schuze.predseda
+---
+code: |
+  jmenaZakladatelu = []
+  for zakladatel in Spolek.zakladatele:
+    jmenaZakladatelu.append(zakladatel.name.text)
