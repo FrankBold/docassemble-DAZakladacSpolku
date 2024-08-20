@@ -1,20 +1,32 @@
 include:
   - zakladatelskeDokumenty.yml
+  - t_program.yml
 ---
 sections:
   - uvod: Úvod ustavující schůze
 progressive: False
 ---
-mandatory: True
+sets: Spolek.schuze.program.there_are_any
 code: |
-  povinnyProgram = [["Úvodní slovo", True], ["Soupis listiny přítomných", False], ["Schválení stanov", True], ["Volba orgánů spolku", True], ["Pověření osoby k podání návrhu na zápis spolku", True]]
+  Spolek.schuze.program.there_are_any = True
+  povinnyProgram = [[t_uvod.subject, False, False], [t_listina.subject, False, False], [t_stanovy.subject, True, False], [t_statutar.subject, False, True], [t_povereni.subject, False, False]]
+  Spolek.schuze.program.clear()
   for polozka in povinnyProgram:
     Spolek.schuze.program.appendObject()
     Spolek.schuze.program[-1].important = dict(delete=False, edit=False)
     Spolek.schuze.program[-1].name.text = polozka[0]
-    if polozka[1] == False:
-      Spolek.schuze.program[-1].jednomyslne = True
+    Spolek.schuze.program[-1].hlasovani = polozka[1]
+    Spolek.schuze.program[-1].volba = polozka[2]
   Spolek.schuze.program.there_is_another = False
+---
+sets: Spolek.schuze.program[i].zapis
+code: |
+  povinnyProgramZapis = [[t_uvod.content, t_uvod.subject, False], [t_listina.content, t_listina.subject, False], [t_stanovy.content, t_stanovy.subject, False], [t_statutar.content, t_statutar.subject, True], [t_povereni.content, t_povereni.subject, False]]
+  try:
+    Spolek.schuze.program[i].zapis = povinnyProgramZapis[i][0]
+    Spolek.schuze.program[i].volba = povinnyProgramZapis[i][2]
+  except:
+    Spolek.schuze.program[i].zapis = Spolek.schuze.program[i].obsah
 ---
 mandatory: True
 code: |
