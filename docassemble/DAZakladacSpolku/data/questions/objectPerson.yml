@@ -288,3 +288,17 @@ code: |
   jmenaZakladatelu = []
   for zakladatel in Spolek.zakladatele:
     jmenaZakladatelu.append(zakladatel.name.text)
+---
+question: |
+  Kandidát na pozici:
+
+  **${ Spolek.schuze.program[i].name.text }**
+fields:
+  - Jméno a příjmení: Spolek.schuze.program[i].kandidat[j].name.text
+  - Ulice a číslo popisné: Spolek.schuze.program[i].kandidat[j].address
+  - Datum narození: Spolek.schuze.program[i].kandidat[j].birthday
+    datatype: date
+  - Hlasů pro: Spolek.schuze.program[i].kandidat[j].pro
+    datatype: range
+    min: 0
+    max: ${ Spolek.schuze.pritomni.number() }

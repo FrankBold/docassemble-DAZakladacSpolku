@@ -22,6 +22,7 @@ objects:
   - Spolek.schuze.stanovy: DAObject
   - Spolek.schuze.pritomni: DAList.using(object_type=Thing, label="účastníka", ask_number=True)
   - Spolek.schuze.program: DAList.using(object_type=Thing)
+  - Spolek.schuze.program.kandidat: DAList.using(object_type=Thing, label="kandidát")
   - Spolek.schuze.predseda: DAObject
   - Spolek.schuze.zapisovatel: DAObject
   - Spolek.schuze.overovatel: DAObject
