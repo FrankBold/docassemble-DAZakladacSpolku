@@ -270,14 +270,6 @@ edit:
   - name.first
   - podpis
 ---
-question: |
-  Údaje ${ ordinal(i) } přítomného?
-fields:
-  - Jméno a příjmení: Spolek.schuze.pritomni[i].name.first
-  - Bydliště: Spolek.schuze.pritomni[i].address
-  - Přidat další osobu?: Spolek.schuze.pritomni.there_is_another
-    datatype: yesnoradio
----
 section: program
 question: |
   Program schůze

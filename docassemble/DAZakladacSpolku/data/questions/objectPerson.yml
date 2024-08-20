@@ -302,3 +302,14 @@ fields:
     datatype: range
     min: 0
     max: ${ Spolek.schuze.pritomni.number() }
+---
+question: |
+  Údaje ${ ordinal(i) } přítomného?
+fields:
+  - Jméno a příjmení: Spolek.schuze.pritomni[i].name.text
+  - Bydliště: Spolek.schuze.pritomni[i].address
+  - Přidat další osobu?: Spolek.schuze.pritomni.there_is_another
+    datatype: yesnoradio
+    show if:
+      code: |
+        Spolek.schuze.pritomni.minimum_number <= len(Spolek.schuze.pritomni)
