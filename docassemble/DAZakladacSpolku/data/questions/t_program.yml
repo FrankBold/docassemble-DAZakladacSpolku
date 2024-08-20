@@ -31,4 +31,4 @@ template: t_povereni
 subject: |
   Pověření osoby k podání návrhu na zápis spolku
 content: |
-  Ustavující schůze pověřuje k podání návrhu na zápis do spolkového rejstříku: ${ Spolek.zalozeni.navrhovatel.name.text }, ${ Spolek.zalozeni.navrhovatel.address }, ${ format_date(Spolek.zalozeni.navrhovatel.birthday, format='dd.MM.yyyy')}.
+  Ustavující schůze pověřuje k podání návrhu na zápis do spolkového rejstříku: ${ Spolek.zalozeni.navrhovatel[0].name.text }, ${ Spolek.zalozeni.navrhovatel[0].address }, ${ format_date(Spolek.zalozeni.navrhovatel[0].birthday, format='dd.MM.yyyy')}.
