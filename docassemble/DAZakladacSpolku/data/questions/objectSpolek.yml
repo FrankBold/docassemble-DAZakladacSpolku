@@ -20,7 +20,7 @@ objects:
   - Spolek.zakladatele: DAList.using(object_type=Thing, label="zakladatel spolku", ask_number=True)
   - Spolek.schuze: DAObject
   - Spolek.schuze.stanovy: DAObject
-  - Spolek.schuze.pritomni: DAList.using(object_type=Thing, label="účastníka", there_are_any=True, minimum_number=3)
+  - Spolek.schuze.pritomni: DAList.using(object_type=Thing, label="účastníka", minimum_number=3)
   - Spolek.schuze.program: DAList.using(object_type=Thing)
   - Spolek.schuze.program.kandidat: DAList.using(object_type=Thing, label="kandidát")
   - Spolek.schuze.predseda: DAObject
