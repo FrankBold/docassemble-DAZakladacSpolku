@@ -28,6 +28,26 @@ code: |
   except:
     Spolek.schuze.program[i].zapis = Spolek.schuze.program[i].obsah
 ---
+sets: Spolek.schuze.program[i].kandidat.target_number
+code: |
+  if Spolek.schuze.program[i].volba == False:
+    Spolek.schuze.program[i].kandidat.target_number = 0
+  else:
+    if Spolek.schuze.program[i].name.text == "Volba statutárního orgánu" and Spolek.statutar.druh == "predseda":
+      Spolek.schuze.program[i].kandidat.target_number = 1
+    elif Spolek.schuze.program[i].name.text == "Volba statutárního orgánu" and Spolek.statutar.druh == "predseda" and "target_number" in Spolek.statutar.clen:
+      Spolek.schuze.program[i].kandidat.target_number = Spolek.statutar.clen.target_number
+    else:
+      Spolek.schuze.program[i].kandidat.target_number = Spolek.schuze.program[i].kandidat.pocet
+---
+question: |
+  Počet členů orgánu:
+
+  **${ Spolek.schuze.program[i].name.text }**
+fields:
+  - no label: Spolek.schuze.program[i].kandidat.pocet
+    datatype: integer
+---
 mandatory: True
 code: |
   the_task

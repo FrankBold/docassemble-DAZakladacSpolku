@@ -310,7 +310,7 @@ fields:
   - Hlasů pro: Spolek.schuze.program[i].kandidat[j].pro
     datatype: range
     min: 0
-    max: len(Spolek.schuze.pritomni)
+    max: ${ len(Spolek.schuze.pritomni) }
 ---
 sets: Spolek.schuze.pritomni.there_is_another
 question: |
