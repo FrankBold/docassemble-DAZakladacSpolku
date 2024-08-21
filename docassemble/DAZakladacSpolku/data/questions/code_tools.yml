@@ -38,6 +38,7 @@ code: |
   while count <= Spolek.osoby.target_number:
     Spolek.osoby.appendObject()
     Spolek.osoby[-1].zakladatel = True
+    counbt += 1
 
   prepopulateZakladatele = True
 ---
