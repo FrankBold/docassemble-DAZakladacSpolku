@@ -27,20 +27,21 @@ code: |
       undefine("seznamClenu")
     case "zakladatel":
       seznamZakladatelu[action_argument("cislo")].zakladatel = False
-      undefine("seznamZakladateluu")
+      undefine("seznamZakladatelu")
 ---
 # Zakladatelé spolku
 code: |
   seznamZakladatelu = [item for item in Spolek.osoby if item.zakladatel]
 ---
 code: |
-  count = 1
-  while count <= Spolek.osoby.target_number:
-    Spolek.osoby.appendObject()
-    Spolek.osoby[-1].zakladatel = True
-    count += 1
-    if count > 10:
-      break
+  if len(Spolek.osoby) < Spolek.osoby.target_number:
+    count = 1
+    while count <= Spolek.osoby.target_number:
+      Spolek.osoby.appendObject()
+      Spolek.osoby[-1].zakladatel = True
+      count += 1
+      if count > 10:
+        break
 
   prepopulateZakladatele = True
 ---
@@ -50,7 +51,7 @@ columns:
   - Jméno: |
       row_item.name.text
   - Bydliště: |
-      row_item.adresa
+      row_item.address
   - Vymazat: |
       action_button_html(url_action("skrtnoutFunkci", druh="zakladatel", cislo=row_index), label="škrtnout", color="danger", size="sm")
 ---
