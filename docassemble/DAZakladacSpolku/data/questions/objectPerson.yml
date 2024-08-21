@@ -294,14 +294,6 @@ question: |
 
   **${ Spolek.schuze.program[i].name.text }**
 fields:
-  - Někdo z členů: Spolek.schuze.program[i].kandidat[j]
-    datatype: object
-    disable others:
-      - Spolek.schuze.program[i].kandidat[j].name.text
-      - Spolek.schuze.program[i].kandidat[j].address
-      - Spolek.schuze.program[i].kandidat[j].birthday
-    choices:
-      - Spolek.zakladatele
   - Jméno a příjmení: Spolek.schuze.program[i].kandidat[j].name.text
   - Ulice a číslo popisné: Spolek.schuze.program[i].kandidat[j].address
   - Datum narození: Spolek.schuze.program[i].kandidat[j].birthday
