@@ -4,12 +4,14 @@ include:
 ---
 sections:
   - uvod: Úvod ustavující schůze
+  - listina: Listina přítomných
 progressive: False
 ---
 mandatory: True
 code: |
   uvod
   podklady
+  listinaDone
   the_task
   if the_task.ready():
     zapis
@@ -57,6 +59,32 @@ action buttons:
   - label: Stáhnout podklady na schůzi
     action: https://frankbold.org/poradna/spolky-a-zapojeni-verejnosti/spolky/zakladani-spolku/vzor/zapis-z-ustavujici-schuze-spolku
 continue button field: podklady
+---
+section: listina
+question: |
+  Listina přítomných
+subquestion: |
+  Pokud máte listinu přítomných vyplněnou fyzicky, tuto část přeskočte.
+
+  Upravit seznam přítomných:
+  ${ Spolek.schuze.pritomni.table }
+
+  ${ Spolek.schuze.pritomni.add_action() }
+section: listina
+continue button field: listinaDone
+---
+code: |
+  seznamLidi = [{"jmeno":"Michal", "adresa": "Praha"}]
+---
+table: Spolek.schuze.pritomni.table
+rows: seznamLidi
+columns:
+  - Jméno: |
+      row_item.jmeno
+  - Bydliště: |
+      row_item.adresa
+edit:
+  - jmeno
 ---
 ################## VÝSTUP
 mandatory: True
