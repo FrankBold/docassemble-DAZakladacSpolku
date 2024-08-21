@@ -18,3 +18,13 @@ objects:
   - Spolek.sidlo.vlastnik: DAList.using(object_type=Thing, label="vlastník sídla", ask_number=True)
   - Spolek.sidlo.katastr: DAObject
   - Spolek.zakladatele: DAList.using(object_type=Thing, label="zakladatel spolku", ask_number=True)
+  - Spolek.schuze: DAObject
+  - Spolek.schuze.stanovy: DAObject
+  - Spolek.schuze.pritomni: DAList.using(object_type=Thing, label="účastníka", minimum_number=3)
+  - Spolek.schuze.program: DAList.using(object_type=Thing)
+  - Spolek.schuze.predseda: DAObject
+  - Spolek.schuze.zapisovatel: DAObject
+  - Spolek.schuze.overovatel: DAObject
+---
+objects:
+  - Spolek.schuze.program[i].kandidat: DAList.using(object_type=Thing, label="kandidát", ask_number=True)
