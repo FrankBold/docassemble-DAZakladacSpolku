@@ -39,6 +39,8 @@ code: |
     Spolek.osoby.appendObject()
     Spolek.osoby[-1].zakladatel = True
     count += 1
+    if count > 10:
+      break
 
   prepopulateZakladatele = True
 ---
