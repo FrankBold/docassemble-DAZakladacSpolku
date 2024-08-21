@@ -1,3 +1,4 @@
+sets: Spolek.osoby[i].name.text
 question: |
   Identifikační údaje osoby
 subquestion: |
