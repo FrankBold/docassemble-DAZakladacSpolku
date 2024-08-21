@@ -34,12 +34,12 @@ code: |
   seznamZakladatelu = [item for item in Spolek.osoby if item.zakladatel]
 ---
 code: |
-  if len(Spolek.osoby) == 0:
-    count = 4
+  if prepopulateZakladatele
+    count = 1
     while count <= Spolek.osoby.target_number:
       Spolek.osoby.appendObject()
       Spolek.osoby[-1].zakladatel = True
-      
+
   prepopulateZakladatele = True
 ---
 table: Spolek.osoby.tableZakladatele
