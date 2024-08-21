@@ -289,7 +289,6 @@ code: |
   for zakladatel in Spolek.zakladatele:
     jmenaZakladatelu.append(zakladatel.name.text)
 ---
-sets: Spolek.schuze.program[i].kandidat[j]
 question: |
   Kandidát na pozici:
 

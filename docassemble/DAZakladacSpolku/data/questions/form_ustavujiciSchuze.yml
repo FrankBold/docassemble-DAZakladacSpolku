@@ -19,7 +19,6 @@ code: |
     Spolek.schuze.program[-1].volba = polozka[2]
   Spolek.schuze.program.there_is_another = False
 ---
-sets: Spolek.schuze.program[i].zapis
 code: |
   povinnyProgramZapis = [[t_uvod.content, t_uvod.subject, False], [t_listina.content, t_listina.subject, False], [t_stanovy.content, t_stanovy.subject, False], [t_statutar.content, t_statutar.subject, True], [t_povereni.content, t_povereni.subject, False]]
   try:
