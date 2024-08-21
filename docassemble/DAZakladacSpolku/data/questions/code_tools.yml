@@ -33,6 +33,14 @@ code: |
 code: |
   seznamZakladatelu = [item for item in Spolek.osoby if item.zakladatel]
 ---
+event: prepopulateZakladatele
+code: |
+  if len(Spolek.osoby) == 0:
+    count = 4
+    while count <= Spolek.osoby.target_number:
+      Spolek.osoby.appendObject()
+      Spolek.osoby[-1].zakladatel = True
+---
 table: Spolek.osoby.tableZakladatele
 rows: seznamZakladatelu
 columns:
