@@ -6,6 +6,16 @@ sections:
   - uvod: Úvod ustavující schůze
 progressive: False
 ---
+objects:
+  - Spolek.schuze: DAObject
+  - Spolek.schuze.stanovy: DAObject
+  - Spolek.schuze.pritomni: DAList.using(object_type=Thing, label="účastníka", minimum_number=3)
+  - Spolek.schuze.program: DAList.using(object_type=Thing)
+  - Spolek.schuze.program[i].kandidat: DAList.using(object_type=Thing, label="kandidát", ask_number=True)
+  - Spolek.schuze.predseda: DAObject
+  - Spolek.schuze.zapisovatel: DAObject
+  - Spolek.schuze.overovatel: DAObject
+---
 sets: Spolek.schuze.program.there_are_any
 code: |
   Spolek.schuze.program.there_are_any = True
