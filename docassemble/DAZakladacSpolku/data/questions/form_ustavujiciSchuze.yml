@@ -57,6 +57,12 @@ fields:
   - no label: Spolek.schuze.program[i].kandidat.pocet
     datatype: integer
 ---
+code: |
+  if Spolek.schuze.program[i].kandidat[j].pro >= (Spolek.schuze.pritomni.number()/2):
+    Spolek.schuze.program[i].kandidat[j].zvolen = True
+  else:
+    Spolek.schuze.program[i].kandidat[j].zvolen = False
+---
 mandatory: True
 code: |
   the_task
