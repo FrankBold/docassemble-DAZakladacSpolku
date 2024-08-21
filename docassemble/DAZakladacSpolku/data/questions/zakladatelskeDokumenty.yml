@@ -59,7 +59,6 @@ fields:
 continue button field: zakladatele
 ---
 reconsider: seznamZakladatelu
-mandatory: True
 question: |
   Zakladatelé spolku
 subquestion: |
