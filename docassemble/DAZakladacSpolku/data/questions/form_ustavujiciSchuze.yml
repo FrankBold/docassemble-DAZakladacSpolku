@@ -65,6 +65,6 @@ event: all_done
 question: |
   Máme vše potřebné
 subquestion: |
-  Máme všechny potřebné odpovědi. Nyní si můžete vygenerovat stanovy a pokračovat.
+  Máme všechny potřebné odpovědi. Nyní si můžete vygenerovat zápis a pokračovat.
   
   ${zapis}
