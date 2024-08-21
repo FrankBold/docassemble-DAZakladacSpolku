@@ -68,9 +68,3 @@ subquestion: |
   Máme všechny potřebné odpovědi. Nyní si můžete vygenerovat stanovy a pokračovat.
   
   ${zapis}
----
-question: |
-  Nenávidím tě
-fields: 
-  - Číslo: Spolek.schuze.pritomni.target_number
-    datatype: integer
