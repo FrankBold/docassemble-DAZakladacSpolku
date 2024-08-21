@@ -54,7 +54,7 @@ section: zakladatele
 question: |
   Zakladatelé spolku
 subquestion: |
-  Počet: ${Spolek.osoby.number()}
+  Počet: ${Spolek.osoby.number_gathered()}
 fields:
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,zakladatele)")

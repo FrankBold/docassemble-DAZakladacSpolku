@@ -34,7 +34,7 @@ code: |
   seznamZakladatelu = [item for item in Spolek.osoby if item.zakladatel]
 ---
 code: |
-  if Spolek.osoby.number() < Spolek.osoby.target_number:
+  if Spolek.osoby.number_gathered() < Spolek.osoby.target_number:
     count = 1
     while count <= Spolek.osoby.target_number:
       Spolek.osoby.appendObject()
