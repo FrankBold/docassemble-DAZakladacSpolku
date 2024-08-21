@@ -289,6 +289,9 @@ code: |
   for zakladatel in Spolek.zakladatele:
     jmenaZakladatelu.append(zakladatel.name.text)
 ---
+code: | 
+  mozni_kandidati = Spolek.zakladatele.copy_deep("mozni_kandidati")
+---
 question: |
   Kandidát na pozici:
 
@@ -301,7 +304,7 @@ fields:
       - Spolek.schuze.program[i].kandidat[j].address
       - Spolek.schuze.program[i].kandidat[j].birthday
     choices:
-      - Spolek.zakladatele
+      - mozni_kandidati
   - Jméno a příjmení: Spolek.schuze.program[i].kandidat[j].name.text
   - Ulice a číslo popisné: Spolek.schuze.program[i].kandidat[j].address
   - Datum narození: Spolek.schuze.program[i].kandidat[j].birthday
