@@ -221,20 +221,6 @@ code: |
 ---
 #### USTAVUJÍCÍ SCHŮZE
 sets:
-  - Spolek.schuze.svolavatel
-  - Spolek.schuze.datumKonani
-  - Spolek.schuze.datumSvolani
-  - Spolek.schuze.forma
-  - Spolek.schuze.obec
-section: organy
-question: |
-  Svolání ustavující schůze
-fields: 
-  - code: |
-      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,ustavujiciSchuze)~and(section,eq,uvod)")
-continue button field: organy
----
-sets:
   - Spolek.schuze.predseda
   - Spolek.schuze.zapisovatel
   - Spolek.schuze.overovatel

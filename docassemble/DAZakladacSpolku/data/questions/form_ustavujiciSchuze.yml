@@ -6,79 +6,10 @@ sections:
   - uvod: Úvod ustavující schůze
 progressive: False
 ---
-objects:
-  - Spolek.schuze: DAObject
-  - Spolek.schuze.stanovy: DAObject
-  - Spolek.schuze.pritomni: DAList.using(object_type=Thing, label="účastníka", minimum_number=3)
-  - Spolek.schuze.program: DAList.using(object_type=Thing)
-  - Spolek.schuze.program[i].kandidat: DAList.using(object_type=Thing, label="kandidát", ask_number=True)
-  - Spolek.schuze.predseda: DAObject
-  - Spolek.schuze.zapisovatel: DAObject
-  - Spolek.schuze.overovatel: DAObject
----
-sets: Spolek.schuze.program.there_are_any
-code: |
-  Spolek.schuze.program.there_are_any = True
-  povinnyProgram = [[t_uvod.subject, False, False], [t_listina.subject, False, False], [t_stanovy.subject, True, False], [t_statutar.subject, False, True], [t_povereni.subject, False, False]]
-  Spolek.schuze.program.clear()
-  for polozka in povinnyProgram:
-    Spolek.schuze.program.appendObject()
-    Spolek.schuze.program[-1].important = dict(delete=False, edit=False)
-    Spolek.schuze.program[-1].name.text = polozka[0]
-    Spolek.schuze.program[-1].hlasovani = polozka[1]
-    Spolek.schuze.program[-1].volba = polozka[2]
-  Spolek.schuze.program.there_is_another = False
----
-code: |
-  povinnyProgramZapis = [[t_uvod.content, t_uvod.subject, False], [t_listina.content, t_listina.subject, False], [t_stanovy.content, t_stanovy.subject, False], [t_statutar.content, t_statutar.subject, True], [t_povereni.content, t_povereni.subject, False]]
-  try:
-    Spolek.schuze.program[i].zapis = povinnyProgramZapis[i][0]
-    Spolek.schuze.program[i].volba = povinnyProgramZapis[i][2]
-  except:
-    Spolek.schuze.program[i].zapis = Spolek.schuze.program[i].obsah
----
-sets: Spolek.schuze.program[i].kandidat.target_number
-code: |
-  if Spolek.schuze.program[i].volba == False:
-    Spolek.schuze.program[i].kandidat.target_number = 0
-  else:
-    if Spolek.schuze.program[i].name.text == "Volba statutárního orgánu" and Spolek.statutar.druh == "predseda":
-      Spolek.schuze.program[i].kandidat.target_number = 1
-    elif Spolek.schuze.program[i].name.text == "Volba statutárního orgánu" and Spolek.statutar.druh == "predseda" and "target_number" in Spolek.statutar.clen:
-      Spolek.schuze.program[i].kandidat.target_number = Spolek.statutar.clen.target_number
-    else:
-      Spolek.schuze.program[i].kandidat.target_number = Spolek.schuze.program[i].kandidat.pocet
----
-question: |
-  Počet členů orgánu:
-
-  **${ Spolek.schuze.program[i].name.text }**
-fields:
-  - no label: Spolek.schuze.program[i].kandidat.pocet
-    datatype: integer
----
-sets: Spolek.schuze.program[i].kandidat[j].zvolen
-code: |
-  if Spolek.schuze.program[i].kandidat[j].pro >= (Spolek.schuze.pritomni.number()/2):
-    Spolek.schuze.program[i].kandidat[j].zvolen = True
-  else:
-    Spolek.schuze.program[i].kandidat[j].zvolen = False
----
-sets: Spolek.zakladatel[i].zvolen
-code: |
-  if Spolek.zakladatel[i].zvolen.pro >= (Spolek.schuze.pritomni.number()/2):
-    Spolek.zakladatel[i].zvolen = True
-  else:
-    Spolek.zakladatel[i].zvolen = False
----
-question: |
-  aoisdhipaghwebaeg
-fields:
-  - Zvolen: Spolek.zakladatele[i].zvolen
-    input type: yesnoradio
----
 mandatory: True
 code: |
+  uvod
+  podklady
   the_task
   if the_task.ready():
     zapis
@@ -100,6 +31,34 @@ question: |
   </div>
 reload: 1
 ---
+##################### OTÁZKY
+sets:
+  - Spolek.schuze.svolavatel
+  - Spolek.schuze.datumKonani
+  - Spolek.schuze.datumSvolani
+  - Spolek.schuze.forma
+  - Spolek.schuze.obec
+section: uvod
+question: |
+  Úvodní informace ke konání schůze
+fields: 
+  - code: |
+      get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,ustavujiciSchuze)~and(section,eq,uvod)")
+continue button field: uvod
+---
+section: uvod
+questions: |
+  Chcete rovnou vyplnit zápis?
+subquestion: |
+  Pokud jste ustavující schůzi už konali, nebo chcete vyplnit zápis rovnou, můžete.
+
+  Jinak si stáhněte podklady a zápis vyplňte až po schůzi, nebo na místě.
+action buttons:
+  - label: Stáhnout podklady na schůzi
+    action: https://frankbold.org/poradna/spolky-a-zapojeni-verejnosti/spolky/zakladani-spolku/vzor/zapis-z-ustavujici-schuze-spolku
+continue button field: podklady
+---
+################## VÝSTUP
 mandatory: True
 attachment:
   name: Zápis z ustavujici schůze
