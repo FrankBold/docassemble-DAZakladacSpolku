@@ -51,7 +51,6 @@ code: |
       Spolek.zakladatele[-1].cislo = count
       count = count + 1
   Spolek.zakladatele.there_is_another = False
-  zakladateleDone = True
 ---
 # Statutární orgán
 code: |
