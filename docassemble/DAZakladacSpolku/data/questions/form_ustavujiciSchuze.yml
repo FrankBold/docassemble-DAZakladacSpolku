@@ -64,12 +64,12 @@ code: |
   else:
     Spolek.schuze.program[i].kandidat[j].zvolen = False
 ---
-sets: Spolek.schuze.program[i].kandidat[j].zvolen
+sets: Spolek.zakladatel[i].zvolen
 code: |
-  if Spolek.schuze.program[i].kandidat[j].pro >= (Spolek.schuze.pritomni.number()/2):
-    Spolek.schuze.program[i].kandidat[j].zvolen = True
+  if Spolek.zakladatel[i].zvolen.pro >= (Spolek.schuze.pritomni.number()/2):
+    Spolek.zakladatel[i].zvolen = True
   else:
-    Spolek.schuze.program[i].kandidat[j].zvolen = False
+    Spolek.zakladatel[i].zvolen = False
 ---
 mandatory: True
 code: |
