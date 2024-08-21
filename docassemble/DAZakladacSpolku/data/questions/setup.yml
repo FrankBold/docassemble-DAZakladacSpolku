@@ -29,7 +29,10 @@ code: |
       spolek_raw = load_spolek_data(int(Spolek.row_id))
 
       for key, value in spolek_raw.items():
-        define(f"Spolek.{key}", value)
+        if "kandidat" in key nad "kandidat[" not in key:
+          define(f"Spolek.{key}", DAList.using(object_type=Thing, label="kandidát", ask_number=True))
+        else:
+          define(f"Spolek.{key}", value)
 #        Zřejmě musím dodělat výhybku pro "kandidat", aby pokud jej načítá, tak nejdřív inicioval ten objekt...
 
       save_spolek_data(all_variables(make_copy=True))
