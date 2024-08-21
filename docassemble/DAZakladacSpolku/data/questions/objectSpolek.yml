@@ -25,6 +25,4 @@ objects:
   - Spolek.schuze.predseda: DAObject
   - Spolek.schuze.zapisovatel: DAObject
   - Spolek.schuze.overovatel: DAObject
----
-objects:
-  - Spolek.schuze.program[i].kandidat: DAList.using(object_type=Thing, label="kandidát", ask_number=True)
+  - Spolek.schuze.program.kandidat: DAList.using(object_type=Thing, label="kandidát", ask_number=True)
