@@ -30,6 +30,7 @@ code: |
 
       for key, value in spolek_raw.items():
         define(f"Spolek.{key}", value)
+#        Zřejmě musím dodělat výhybku pro "kandidat", aby pokud jej načítá, tak nejdřív inicioval ten objekt...
 
       save_spolek_data(all_variables(make_copy=True))
 
