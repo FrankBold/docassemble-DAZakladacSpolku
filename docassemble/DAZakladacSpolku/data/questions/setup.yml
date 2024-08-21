@@ -32,9 +32,8 @@ code: |
         try:
           define(f"Spolek.{key}", value)
         except Exception as e:
-          if "kandidat’ is not defined" in e: 
-            define(re.findall(r"'(.*?)'", e), DAList.using(object_type=Thing, label="kandidát", ask_number=True))
-            define(f"Spolek.{key}", value)
+          define("Spolek.schuze.program[3].kandidat", DAList.using(object_type=Thing, label="kandidát", ask_number=True))
+          define(f"Spolek.{key}", value)
 #        Zřejmě musím dodělat výhybku pro "kandidat", aby pokud jej načítá, tak nejdřív inicioval ten objekt...
 
       save_spolek_data(all_variables(make_copy=True))
