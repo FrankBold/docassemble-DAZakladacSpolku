@@ -71,6 +71,12 @@ code: |
   else:
     Spolek.zakladatel[i].zvolen = False
 ---
+question: |
+  aoisdhipaghwebaeg
+fields:
+  - Zvolen: Spolek.zakladatele[i].zvolen
+    input type: yesnoradio
+---
 mandatory: True
 code: |
   the_task
