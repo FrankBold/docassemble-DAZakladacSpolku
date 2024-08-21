@@ -9,56 +9,56 @@ subquestion: |
   - státní příslušnost,
   - stát, místo a okres narození.
 fields:
-  - Typ osoby: Spolek.osoba[i].forma
+  - Typ osoby: Spolek.osoby[i].forma
     input type: radio
     choices:
       - Právnická osoba: PO
       - Fyzická osoba: FO
-  - Jméno a příjmení: Spolek.osoba[i].name.text
+  - Jméno a příjmení: Spolek.osoby[i].name.text
     show if:
-      variable: Spolek.osoba[i].forma
+      variable: Spolek.osoby[i].forma
       is: FO
-  - Trvalé bydliště: Spolek.osoba[i].address
+  - Trvalé bydliště: Spolek.osoby[i].address
     css class: addressAutocomplete
     show if:
-      variable: Spolek.osoba[i].forma
+      variable: Spolek.osoby[i].forma
       is: FO
-  - Datum narození: Spolek.osoba[i].birthday
+  - Datum narození: Spolek.osoby[i].birthday
     datatype: date
     show if:
-      variable: Spolek.osoba[i].forma
+      variable: Spolek.osoby[i].forma
       is: FO
-  - IČO: Spolek.osoba[i].ic
+  - IČO: Spolek.osoby[i].ic
     datatype: integer
     minlength: 8
     maxlength: 8
     show if:
-      variable: Spolek.osoba[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
     hint: 12345678
     note: |
       <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
-  - Název organizace: Spolek.osoba[i].name.text
+  - Název organizace: Spolek.osoby[i].name.text
     show if:
-      variable: Spolek.osoba[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
-  - Sídlo: Spolek.osoba[i].address
+  - Sídlo: Spolek.osoby[i].address
     css class: addressAutocomplete
     hint: Sídlo
     show if:
-      variable: Spolek.osoba[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
   - note: |
       **Zástupce společnosti**
     show if:
-      variable: Spolek.osoba[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
-  - Jméno zástupce: Spolek.osoba[i].zastupceName
+  - Jméno zástupce: Spolek.osoby[i].zastupceName
     required: False
     show if:
-      variable: Spolek.osoba[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
-  - Pozice v organizaci: Spolek.osoba[i].zastupceFunkce
+  - Pozice v organizaci: Spolek.osoby[i].zastupceFunkce
     required: False
     show if:
       variable: Spolek.zosoba[i].forma
@@ -68,11 +68,11 @@ css: |
 script: |
   <script type="application/javascript" charset="utf-8">
     $("#doplnit").click(function(){
-      action_call('doplnUdaje', {ico: val('Spolek.osoba[i].ic')}, function(data){
+      action_call('doplnUdaje', {ico: val('Spolek.osoby[i].ic')}, function(data){
         if (typeof data.test.firma !== 'undefined') {
-        setField("Spolek.osoba[i].name.text", data.test.firma);
-        setField("Spolek.osoba[i].ic", data.test.ico);
-        setField("Spolek.osoba[i].address", data.test.sidlo);
+        setField("Spolek.osoby[i].name.text", data.test.firma);
+        setField("Spolek.osoby[i].ic", data.test.ico);
+        setField("Spolek.osoby[i].address", data.test.sidlo);
         } else if (typeof data.test == 'object') {
           action_perform('vyberFirmy')
         } else {
