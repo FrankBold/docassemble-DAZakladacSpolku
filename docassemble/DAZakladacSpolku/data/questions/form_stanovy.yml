@@ -11,6 +11,7 @@ progressive: False
 ---
 mandatory: True
 code: |
+  zakladateleDone
   the_task
   if the_task.ready():
     stanovy

@@ -2,7 +2,7 @@ mandatory: True
 objects:
   - Spolek: Thing
   - Spolek.name: Name
-  - Spolek.lide: DAList.using(object_type=Thing, ask_number=True)
+  - Spolek.osoby: DAList.using(object_type=Thing, ask_number=True)
   - Spolek.clenstvi: DAObject
   - Spolek.zivnost: DAObject
   - Spolek.nejvyssiOrgan: DAObject
