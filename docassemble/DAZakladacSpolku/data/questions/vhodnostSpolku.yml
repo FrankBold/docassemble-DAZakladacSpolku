@@ -37,6 +37,7 @@ event: splneno
 code: |
   response = step_done(step="vhodnostSpolku")
   vystup
+---
 event: vystup
 question: |
   Vyhodnocení
