@@ -31,9 +31,7 @@ def step_done(step: int, row_id: int):
 
     progress = nocodb.get_record(table_id="mkejxthrd05vdcc", row_id=row_id, fields="progress")
 
-    progress = progress["progress"]
-
-    progress[step] = True
+    progress["progress"][step] = True
     
     results = nocodb.update_record(table_id="mkejxthrd05vdcc", content=progress, row_id=row_id)
     
