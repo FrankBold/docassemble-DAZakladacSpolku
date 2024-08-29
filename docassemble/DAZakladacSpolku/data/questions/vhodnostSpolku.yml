@@ -42,8 +42,6 @@ event: vystup
 question: |
   Vyhodnocení
 subquestion: |  
-  ${response}
-
   Snažili jsme se vám nadhodit otázky, které stojí za zvážení, než se do zakládání spolku pustíte.
 
   Pokud vám založení spolku stále dává smysl můžeme se posunout k tomu, jak jej založit.
@@ -51,3 +49,5 @@ subquestion: |
   Pokud si nejste jisti, zkuste to ještě zvážit.
 
   Budeme rádi za dotazy.
+
+  ${ action_button_html(f"/zakladac/{Spolek.row_id}/charakteristika/", label="Pokračovat na další krok", color="primary", size="md") }
