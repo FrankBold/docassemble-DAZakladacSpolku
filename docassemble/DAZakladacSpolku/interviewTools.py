@@ -29,7 +29,7 @@ def save_spolek_data(data: dict):
 
 def step_done(step: int, row_id: int):
 
-    progress = nocodb.get_record(table_id="mkejxthrd05vdcc", row_id=row_id, filter="progress")
+    progress = nocodb.get_record(table_id="mkejxthrd05vdcc", row_id=row_id, fields="progress")
 
     progress[step] = True
     
