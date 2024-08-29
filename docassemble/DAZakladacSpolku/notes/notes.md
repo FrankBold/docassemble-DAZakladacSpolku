@@ -8,3 +8,14 @@
 ## To-Do
 
 - [] Zabezpečit načítání docassamble interview, aby proběhla kontrola, že daný spolek načítá správný uživatel.
+
+
+Úvodní informace  
+Listina přítomných  
+Volba orgánů  
+Schválení programu  
+Schválení stanov  
+Volba statutárů  
+Osoba pověřená zápisem  
+Ostatní  
+Chcete rovnou přistoupit k zápisu?
