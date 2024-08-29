@@ -35,7 +35,7 @@ def step_done(step: int, row_id: int):
     
     results = nocodb.update_record(table_id="mkejxthrd05vdcc", content=progress, row_id=row_id)
     
-    return results
+    return progress, results
 
 def call_with_error_check(url):
     try:
