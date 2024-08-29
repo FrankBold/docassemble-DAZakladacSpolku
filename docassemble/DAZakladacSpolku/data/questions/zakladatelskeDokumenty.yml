@@ -49,7 +49,7 @@ subquestion: |
 continue button field: uvod
 ---
 sets:
-  - Spolek.zakladatele.target_number
+  - Spolek.osoby.target_number
 section: zakladatele
 question: |
   Zakladatelé spolku
@@ -57,6 +57,18 @@ fields:
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,zakladatelskeDokumenty)~and(section,eq,zakladatele)")
 continue button field: zakladatele
+---
+reconsider: seznamZakladatelu
+question: |
+  Zakladatelé spolku
+subquestion: |
+  Seznam zakládajících členů spolku. Budete je moci kdykoli později doplnit.
+
+  Upravit seznam přítomných:
+  ${ Spolek.osoby.tableZakladatele }
+
+  ${ action_button_html(url_action("addClovek", druh="zakladatel"), label="Přidat", color="success", size="sm") }
+continue button field: zakladateleDone
 ---
 sets:
   - Spolek.name.text

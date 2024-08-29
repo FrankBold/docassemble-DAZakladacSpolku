@@ -3,10 +3,10 @@ import json
 
 from docassemble.base.util import validation_error
 
-from docassemble.DATools.nocodb import list_nocodb_record, update_record
+from docassemble.DATools import nocodb
 
 def get_questions_from_nocodb(table_id: str, filter: str= ""):
-    data = list_nocodb_record(table_id=table_id, fields="label,field,datatype,input type,choices,show if,help,hint,validate,note,css class", filter=filter)
+    data = nocodb.list_nocodb_record(table_id=table_id, fields="label,field,datatype,input type,choices,show if,help,hint,validate,note,css class", filter=filter)
 
     updated_data = []
     for entry in data:
@@ -23,8 +23,18 @@ def save_spolek_data(data: dict):
         "dataSpolek": json.dumps(data["Spolek"])
     }
 
-    results = update_record(table_id="mkejxthrd05vdcc", content=data, row_id=row_id)
+    results = nocodb.update_record(table_id="mkejxthrd05vdcc", content=data, row_id=row_id)
 
+    return results
+
+def step_done(step: int, row_id: int):
+
+    progress = nocodb.get_record(table_id="mkejxthrd05vdcc", row_id=row_id, filter="progress")
+
+    progress[step] = True
+    
+    results = nocodb.update_record(table_id="mkejxthrd05vdcc", content=progress, row_id=row_id)
+    
     return results
 
 def call_with_error_check(url):
@@ -45,7 +55,7 @@ def get_document_url(row_id: int, document: str):
 
 def load_spolek_data(id: int):
 
-    data = list_nocodb_record(table_id="mkejxthrd05vdcc", fields="dataSpolek", filter=f"(Id,eq,{id})")
+    data = nocodb.list_nocodb_record(table_id="mkejxthrd05vdcc", fields="dataSpolek", filter=f"(Id,eq,{id})")
 
     if len(data) == 1:
         return flatten_json(data[0]["dataSpolek"])
@@ -57,6 +67,9 @@ def flatten_json(data, prefix=''):
     if isinstance(data, dict):
         for key, value in data.items():
             if key in ("_class", "instanceName", "ask_number","ask_object_type","auto_gather","complete_attribute","minimum_number","object_type","object_type_parameters", "there_are_any"):  # Skip these keys
+                continue
+            elif key == "important":
+                result[f"{prefix}.{key}" if prefix else key] = value
                 continue
 
             new_key = f"{prefix}.{key}" if prefix else key

@@ -8,7 +8,53 @@ code: |
 code: |
   zivnostSeznam = string_2_pole(Spolek.zivnost.cinnosti)
 ---
+event: addClovek
+code: |
+  Spolek.osoby.appendObject()
+  match action_argument("druh"):
+    case "clen":
+      Spolek.osoby[-1].clen = True
+    case "zakladatel":
+      Spolek.osoby[-1].zakladatel = True
+  
+  Spolek.osoby[-1].name.text
+---
+event: skrtnoutFunkci
+code: |
+  match action_argument("druh"):
+    case "clen":
+      seznamClenu[action_argument("cislo")].clen = False
+      undefine("seznamClenu")
+    case "zakladatel":
+      seznamZakladatelu[action_argument("cislo")].zakladatel = False
+      undefine("seznamZakladatelu")
+---
 # Zakladatelé spolku
+code: |
+  seznamZakladatelu = [item for item in Spolek.osoby if item.zakladatel]
+---
+code: |
+  if Spolek.osoby.number_gathered() < Spolek.osoby.target_number:
+    count = 1
+    while count <= Spolek.osoby.target_number:
+      Spolek.osoby.appendObject()
+      Spolek.osoby[-1].zakladatel = True
+      count += 1
+      if count > 10:
+        break
+
+  prepopulateZakladatele = True
+---
+table: Spolek.osoby.tableZakladatele
+rows: seznamZakladatelu
+columns:
+  - Jméno: |
+      row_item.name.text
+  - Bydliště: |
+      row_item.address
+  - Vymazat: |
+      action_button_html(url_action("skrtnoutFunkci", druh="zakladatel", cislo=row_index), label="škrtnout", color="danger", size="sm")
+---
 code: |
   count = len(Spolek.zakladatele)
   if len(Spolek.zakladatele) < Spolek.zakladatele.target_number:
@@ -17,7 +63,6 @@ code: |
       Spolek.zakladatele[-1].cislo = count
       count = count + 1
   Spolek.zakladatele.there_is_another = False
-  zakladateleDone = True
 ---
 # Statutární orgán
 code: |

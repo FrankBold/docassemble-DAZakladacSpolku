@@ -11,6 +11,8 @@ progressive: False
 ---
 mandatory: True
 code: |
+  prepopulateZakladatele
+  zakladateleDone
   the_task
   if the_task.ready():
     stanovy
@@ -30,7 +32,7 @@ question: |
   Načítáme aktuální stav <div class="spinner-border text-primary" role="status">
   <span class="visually-hidden">Loading...</span>
   </div>
-reload: True
+reload: 1
 ---
 mandatory: True
 attachment:

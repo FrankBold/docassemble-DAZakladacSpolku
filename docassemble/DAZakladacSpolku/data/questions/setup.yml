@@ -34,11 +34,13 @@ code: |
       save_spolek_data(all_variables(make_copy=True))
 
       loading_done = True
-    except:
+    except Exception as e:
+      errorContent = str(e)
       problem
-
   else:
+    errorContent = "spolek_id not found in url_args"
     problem
+
 ---
 initial: True
 code: |
@@ -50,3 +52,5 @@ question: |
   Chyba při načtení spolku
 subquestion: |
   Nepodařilo se nám načíst dat o Vašem spolku.
+
+  Chyba: ${errorContent}

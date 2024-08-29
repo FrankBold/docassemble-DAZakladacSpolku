@@ -1,5 +1,6 @@
+sets: Spolek.osoby[i].name.text
 question: |
-  Identifikační údaje ${i+1}. zakladatele spolku
+  Identifikační údaje osoby
 subquestion: |
   Údaje níže potřebuje pro předvyplnění potřebných dokumentů. 
 
@@ -9,70 +10,70 @@ subquestion: |
   - státní příslušnost,
   - stát, místo a okres narození.
 fields:
-  - Typ osoby: Spolek.zakladatele[i].forma
+  - Typ osoby: Spolek.osoby[i].forma
     input type: radio
     choices:
       - Právnická osoba: PO
       - Fyzická osoba: FO
-  - Jméno a příjmení: Spolek.zakladatele[i].name.text
+  - Jméno a příjmení: Spolek.osoby[i].name.text
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.osoby[i].forma
       is: FO
-  - Trvalé bydliště: Spolek.zakladatele[i].address
+  - Trvalé bydliště: Spolek.osoby[i].address
     css class: addressAutocomplete
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.osoby[i].forma
       is: FO
-  - Datum narození: Spolek.zakladatele[i].birthday
+  - Datum narození: Spolek.osoby[i].birthday
     datatype: date
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.osoby[i].forma
       is: FO
-  - IČO: Spolek.zakladatele[i].ic
+  - IČO: Spolek.osoby[i].ic
     datatype: integer
     minlength: 8
     maxlength: 8
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
     hint: 12345678
     note: |
       <button id="doplnit" class="btn btn-primary">Doplnit údaje z OR</button>
-  - Název organizace: Spolek.zakladatele[i].name.text
+  - Název organizace: Spolek.osoby[i].name.text
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
-  - Sídlo: Spolek.zakladatele[i].address
+  - Sídlo: Spolek.osoby[i].address
     css class: addressAutocomplete
     hint: Sídlo
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
   - note: |
       **Zástupce společnosti**
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
-  - Jméno zástupce: Spolek.zakladatele[i].zastupceName
+  - Jméno zástupce: Spolek.osoby[i].zastupceName
     required: False
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.osoby[i].forma
       is: PO
-  - Pozice v organizaci: Spolek.zakladatele[i].zastupceFunkce
+  - Pozice v organizaci: Spolek.osoby[i].zastupceFunkce
     required: False
     show if:
-      variable: Spolek.zakladatele[i].forma
+      variable: Spolek.zosoba[i].forma
       is: PO
 css: |
   <link rel="stylesheet" href="${url_of('autocomplete.css')}">
 script: |
   <script type="application/javascript" charset="utf-8">
     $("#doplnit").click(function(){
-      action_call('doplnUdaje', {ico: val('Spolek.zakladatele[i].ic')}, function(data){
+      action_call('doplnUdaje', {ico: val('Spolek.osoby[i].ic')}, function(data){
         if (typeof data.test.firma !== 'undefined') {
-        setField("Spolek.zakladatele[i].name.text", data.test.firma);
-        setField("Spolek.zakladatele[i].ic", data.test.ico);
-        setField("Spolek.zakladatele[i].address", data.test.sidlo);
+        setField("Spolek.osoby[i].name.text", data.test.firma);
+        setField("Spolek.osoby[i].ic", data.test.ico);
+        setField("Spolek.osoby[i].address", data.test.sidlo);
         } else if (typeof data.test == 'object') {
           action_perform('vyberFirmy')
         } else {
@@ -258,7 +259,11 @@ script: |
   <script src="${url_of('mapy_api_suggestions.js')}"></script>
 ---
 question: |
-  Info zakladatele
+  Navrhovatel zápisu spolku
+subquestions: |
+  Kdo bude pověřen návrhem na podání návrhu na zápis spolku?
+
+  Jde pak o jediného člověka, který musí návrh opatřit ověřeným podpisem. Jinak by museli ověřeny podpis zajistit všichni zakládající členové.
 fields:
   - Někdo z členů: Spolek.zalozeni.navrhovatel[i]
     datatype: object
@@ -269,3 +274,55 @@ fields:
   - Bydliště: Spolek.zalozeni.navrhovatel[i].address
   - Datum narození: Spolek.zalozeni.navrhovatel[i].birthday
     datatype: date
+---
+reconsider: jmenaZakladatelu
+question: |
+  Určení předsedy schůze
+fields:
+  - Někdo z členů: Spolek.schuze.predseda
+    disable others: True
+    code: |
+      jmenaZakladatelu
+  - Jméno a příjmení: Spolek.schuze.predseda
+---
+code: |
+  jmenaZakladatelu = []
+  for zakladatel in Spolek.zakladatele:
+    jmenaZakladatelu.append(zakladatel.name.text)
+---
+code: | 
+  mozni_kandidati = Spolek.zakladatele.copy_deep("mozni_kandidati")
+---
+question: |
+  Kandidát na pozici:
+
+  **${ Spolek.schuze.program[i].name.text }**
+fields:
+  - Někdo z členů: Spolek.schuze.program[i].kandidat[j]
+    datatype: object
+    disable others:
+      - Spolek.schuze.program[i].kandidat[j].name.text
+      - Spolek.schuze.program[i].kandidat[j].address
+      - Spolek.schuze.program[i].kandidat[j].birthday
+    choices:
+      - mozni_kandidati
+  - Jméno a příjmení: Spolek.schuze.program[i].kandidat[j].name.text
+  - Ulice a číslo popisné: Spolek.schuze.program[i].kandidat[j].address
+  - Datum narození: Spolek.schuze.program[i].kandidat[j].birthday
+    datatype: date
+  - Hlasů pro: Spolek.schuze.program[i].kandidat[j].pro
+    datatype: range
+    min: 0
+    max: ${ len(Spolek.schuze.pritomni) }
+---
+sets: Spolek.schuze.pritomni.there_is_another
+question: |
+  Údaje ${ ordinal(i) } přítomného?
+fields:
+  - Jméno a příjmení: Spolek.schuze.pritomni[i].name.text
+  - Bydliště: Spolek.schuze.pritomni[i].address
+  - Přidat další osobu?: Spolek.schuze.pritomni.there_is_another
+    datatype: yesnoradio
+    show if:
+      code: |
+        Spolek.schuze.pritomni.minimum_number <= len(Spolek.schuze.pritomni)

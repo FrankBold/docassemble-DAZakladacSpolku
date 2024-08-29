@@ -1,0 +1,85 @@
+include:
+  - zakladatelskeDokumenty.yml
+---
+sections:
+  - souhlasy: Souhlas členů orgánů
+  - sidlo: Souhlas vlastníka nemovitosti
+  - zivnost: Živnostenské oprávnění
+progressive: False
+---
+mandatory: True
+code: |
+  bg_souhlas
+  if bg_souhlas.ready():
+    souhlas
+  else:
+    waiting_screen
+  bg_prohlaseni
+  if bg_souhlas.ready():
+    souhlas
+  else:
+    waiting_screen
+  all_done
+---
+code: |
+  bg_souhlas = background_action("bg_souhlas_task")
+---
+event: bg_souhlas_task
+code: |
+  background_response(souhlas.url_for())
+---
+code: |
+  bg_prohlaseni = background_action("bg_prohlaseni_task")
+---
+event: bg_prohlaseni_task
+code: |
+  if hromadne: 
+    background_response(prohlaseni.url_for())
+  else:
+    files = {}
+    i=0
+    for osoba in seznamOsob:
+      files[f"soubor_{i}"] = Spolek.statutar.clen[i].prohlaseni.url_for(temporary=True)
+      i+=1
+
+    background_response(files)
+---
+event: waiting_screen
+question: |
+  Načítáme aktuální stav <div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+  </div>
+reload: 1
+---
+mandatory: True
+attachment:
+  name: Souhlas s umístěním sídla spoklku
+  filename: Souhlas
+  variable name: souhlas
+  docx template file: SouhlasSidlo.docx
+  valid formats:
+    - docx
+---
+attachment:
+  name: Prohlášení osob
+  filename: Prohlaseni_${Spolek.statutar.clen[i].name.text}
+  variable name: Spolek.statutar.clen[i].prohlaseni
+  docx template file: Prohlaseni.docx
+  valid formats:
+    - docx
+---
+attachment:
+  name: Prohlášení osob
+  filename: Prohlaseni
+  variable name: prohlaseni
+  docx template file: Prohlaseni.docx
+  valid formats:
+    - docx
+---
+event: all_done
+question: |
+  Máme vše potřebné
+subquestion: |
+  Máme všechny potřebné odpovědi. Nyní si můžete vygenerovat stanovy a pokračovat.
+  
+  ${stanovy}
