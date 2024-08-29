@@ -42,6 +42,8 @@ event: vystup
 question: |
   Vyhodnocení
 subquestion: |  
+  ${response}
+
   Snažili jsme se vám nadhodit otázky, které stojí za zvážení, než se do zakládání spolku pustíte.
 
   Pokud vám založení spolku stále dává smysl můžeme se posunout k tomu, jak jej založit.
