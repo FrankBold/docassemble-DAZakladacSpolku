@@ -35,7 +35,7 @@ yesno: q_4
 ---
 event: splneno
 code: |
-  response = step_done(step="vhodnostSpolku")
+  response = step_done(step="vhodnostSpolku", row_id=int(Spolek.row_id))
   vystup
 ---
 event: vystup
