@@ -29,7 +29,7 @@ code: |
       for key, value in spolek_raw.items():
         define(f"Spolek.{key}", value)
 
-      save_spolek_data(all_variables(make_copy=True))
+      save_spolek_data(all_variables(make_copy=True), int(url_args["spolek_id"]))
 
       loading_done = True
     except Exception as e:
@@ -43,7 +43,7 @@ code: |
 initial: True
 code: |
   if loading_done:
-    save_spolek_data(all_variables(make_copy=True))
+    save_spolek_data(all_variables(make_copy=True), int(url_args["spolek_id"]))
 ---
 event: problem
 question: |
