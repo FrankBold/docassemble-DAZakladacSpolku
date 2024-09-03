@@ -50,4 +50,4 @@ subquestion: |
 
   Budeme rádi za dotazy.
 
-  ${ action_button_html(f"/zakladac/{url_args["spolek_id"]}/charakteristika/", label="Pokračovat na další krok", color="primary", size="md") }
+  ${ action_button_html(f"/zakladac/{url_args['spolek_id']}/charakteristika/", label="Pokračovat na další krok", color="primary", size="md") }
