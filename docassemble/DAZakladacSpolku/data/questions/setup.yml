@@ -24,9 +24,7 @@ mandatory: True
 code: |
   if "spolek_id" in url_args:
     try:
-      Spolek.row_id = url_args["spolek_id"]
-
-      spolek_raw = load_spolek_data(int(Spolek.row_id))
+      spolek_raw = load_spolek_data(int(url_args["spolek_id"]))
 
       for key, value in spolek_raw.items():
         define(f"Spolek.{key}", value)

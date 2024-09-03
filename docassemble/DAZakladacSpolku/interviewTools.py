@@ -15,9 +15,7 @@ def get_questions_from_nocodb(table_id: str, filter: str= ""):
 
     return updated_data
 
-def save_spolek_data(data: dict):
-
-    row_id = data["Spolek"]["row_id"]
+def save_spolek_data(data: dict, row_id: int):
 
     data = {
         "dataSpolek": json.dumps(data["Spolek"])

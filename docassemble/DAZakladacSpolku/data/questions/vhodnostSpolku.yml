@@ -35,7 +35,7 @@ yesno: q_4
 ---
 event: splneno
 code: |
-  response = step_done(step="vhodnostSpolku", row_id=int(Spolek.row_id))
+  response = step_done(step="vhodnostSpolku", row_id=int(url_args["spolek_id"]))
   vystup
 ---
 event: vystup
@@ -50,4 +50,4 @@ subquestion: |
 
   Budeme rádi za dotazy.
 
-  ${ action_button_html(f"/zakladac/{Spolek.row_id}/charakteristika/", label="Pokračovat na další krok", color="primary", size="md") }
+  ${ action_button_html(f"/zakladac/{url_args["spolek_id"]}/charakteristika/", label="Pokračovat na další krok", color="primary", size="md") }
