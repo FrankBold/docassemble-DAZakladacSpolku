@@ -108,3 +108,5 @@ code: |
 event: vystup
 question: |
   Hotovo, data odeslána
+subquestions: |
+  ${ action_button_html(f"/zakladac/{url_args['spolek_id']}/dokumenty/", label="Pokračovat na další krok", color="primary", size="md") }
