@@ -12,7 +12,7 @@ code: |
   organy
   clenstvi
   zalozeni
-  vystup
+  splneno
 ---
 sections: 
   - spolek: Spolek
@@ -99,6 +99,11 @@ fields:
   - code: |
       get_questions_from_nocodb(table_id="m69xije3ls6jr82", filter="(interview,eq,charakteristikaSpolku)~and(section,eq,zalozeni)")
 continue button field: zalozeni
+---
+event: splneno
+code: |
+  response = step_done(step="charakteristikaSpolku", row_id=int(url_args["spolek_id"]))
+  vystup
 ---
 event: vystup
 question: |
