@@ -73,9 +73,9 @@ subquestion: |
 continue button field: listinaDone
 ---
 code: |
-  seznamLidi = DAList.using(ob)
+  seznamLidi = DAList.using()
   seznamLidi.append(Thing())
-  seznamLidi[-1].jmeno=
+  seznamLidi[-1].jmeno = "zakladatel"
   seznamLidi.append[{"jmeno":"Michal", "adresa": "Praha"}]
 ---
 table: Spolek.schuze.pritomni.table

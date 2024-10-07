@@ -14,6 +14,8 @@ question: |
 subquestion: |
   Základem spolku jsou jeho členové. Musí být aspoň tři.
 yesno: q_1
+script: |
+  var da_loaded = true;
 ---
 question: |
   Chcete podnikat a rozdělovat případný zisk?
